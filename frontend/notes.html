@@ -1,0 +1,108 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OneDesk Notes</title>
+
+    <link rel="stylesheet" href="css/notes.css">
+</head>
+<body>
+
+<div class="container">
+
+    <aside class="sidebar">
+
+        <div class="logo">
+            OneDesk
+        </div>
+
+        <nav>
+
+            <a href="home.html">
+                🏠 Home
+            </a>
+
+            <a href="tasks.html">
+                ✅ Tasks
+            </a>
+
+            <a href="notes.html" class="active">
+                📝 Notes
+            </a>
+
+            <a href="profile.html">
+                👤 Profile
+            </a>
+
+        </nav>
+
+    </aside>
+
+    <main class="main-content">
+
+        <div class="notes-header">
+
+            <h1>
+                📝 Notes
+            </h1>
+
+            <p>
+                Capture your ideas, plans and thoughts.
+            </p>
+
+        </div>
+
+        <div class="notes-stats">
+
+            <div class="stats-card">
+
+                <h3>Total Notes</h3>
+
+                <span id="notesCount">
+                    0
+                </span>
+
+            </div>
+
+        </div>
+
+        <div class="note-editor">
+
+            <textarea
+                id="noteInput"
+                placeholder="Write your note here..."
+            ></textarea>
+
+            <button id="saveNoteBtn">
+                Save Note
+            </button>
+
+        </div>
+
+        <div class="quote-box">
+
+            <h3>
+                ✨ Today's Thought
+            </h3>
+
+            <p id="noteQuote">
+                Great ideas start with small notes.
+            </p>
+
+        </div>
+
+        <div id="notesContainer">
+
+        </div>
+
+    </main>
+
+</div>
+
+<script src="js/notes.js"></script>
+
+</body>
+</html>
+

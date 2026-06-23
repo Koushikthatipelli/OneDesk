@@ -1,0 +1,84 @@
+
+[
+  {
+    "name": "Egg",
+    "serving": "1 Egg",
+    "calories": 70,
+    "protein": 6,
+    "carbs": 0.5,
+    "fats": 5
+  },
+  {
+    "name": "Banana",
+    "serving": "1 Medium",
+    "calories": 105,
+    "protein": 1.3,
+    "carbs": 27,
+    "fats": 0.3
+  },
+  {
+    "name": "Milk",
+    "serving": "250ml",
+    "calories": 150,
+    "protein": 8,
+    "carbs": 12,
+    "fats": 8
+  },
+  {
+    "name": "White Rice",
+    "serving": "100g",
+    "calories": 130,
+    "protein": 2.7,
+    "carbs": 28,
+    "fats": 0.3
+  },
+  {
+    "name": "Chapati",
+    "serving": "1 Piece",
+    "calories": 120,
+    "protein": 3,
+    "carbs": 20,
+    "fats": 3
+  },
+  {
+    "name": "Chicken Breast",
+    "serving": "100g",
+    "calories": 165,
+    "protein": 31,
+    "carbs": 0,
+    "fats": 3.6
+  },
+  {
+    "name": "Paneer",
+    "serving": "100g",
+    "calories": 265,
+    "protein": 18,
+    "carbs": 6,
+    "fats": 20
+  },
+  {
+    "name": "Curd",
+    "serving": "100g",
+    "calories": 98,
+    "protein": 11,
+    "carbs": 3.4,
+    "fats": 4.3
+  },
+  {
+    "name": "Apple",
+    "serving": "1 Medium",
+    "calories": 95,
+    "protein": 0.5,
+    "carbs": 25,
+    "fats": 0.3
+  },
+  {
+    "name": "Oats",
+    "serving": "100g",
+    "calories": 389,
+    "protein": 17,
+    "carbs": 66,
+    "fats": 7
+  }
+]
+

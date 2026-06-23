@@ -1,0 +1,184 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OneDesk Health</title>
+
+    <link rel="stylesheet" href="css/health.css">
+</head>
+<body>
+
+<div class="container">
+
+    <aside class="sidebar">
+
+        <div class="logo">
+            OneDesk
+        </div>
+
+        <nav>
+
+            <a href="home.html">
+                🏠 Home
+            </a>
+
+            <a href="tasks.html">
+                ✅ Tasks
+            </a>
+
+            <a href="notes.html">
+                📝 Notes
+            </a>
+
+            <a href="health.html" class="active">
+                💪 Health
+            </a>
+
+            <a href="profile.html">
+                👤 Profile
+            </a>
+
+        </nav>
+
+    </aside>
+
+    <main class="main-content">
+
+        <div class="health-header">
+
+            <h1>
+                💪 Health Dashboard
+            </h1>
+
+            <p>
+                Track nutrition, water intake and daily health.
+            </p>
+
+        </div>
+
+        <!-- Nutrition Cards -->
+
+        <div class="stats-grid">
+
+            <div class="stat-card">
+                <h3>🔥 Calories</h3>
+                <span id="caloriesTotal">0</span>
+            </div>
+
+            <div class="stat-card">
+                <h3>💪 Protein</h3>
+                <span id="proteinTotal">0g</span>
+            </div>
+
+            <div class="stat-card">
+                <h3>🍚 Carbs</h3>
+                <span id="carbsTotal">0g</span>
+            </div>
+
+            <div class="stat-card">
+                <h3>🥑 Fats</h3>
+                <span id="fatsTotal">0g</span>
+            </div>
+
+            <div class="stat-card">
+                <h3>💧 Water</h3>
+                <span id="waterTotal">0ml</span>
+            </div>
+
+        </div>
+
+        <!-- Add Food -->
+
+        <div class="food-section">
+
+            <h2>Add Food</h2>
+
+            <input
+                type="text"
+                id="foodName"
+                placeholder="Food Name"
+            >
+
+            <input
+                type="number"
+                id="quantity"
+                placeholder="Quantity"
+            >
+
+            <select id="mealType">
+
+                <option value="Breakfast">
+                    Breakfast
+                </option>
+
+                <option value="Lunch">
+                    Lunch
+                </option>
+
+                <option value="Dinner">
+                    Dinner
+                </option>
+
+                <option value="Snack">
+                    Snack
+                </option>
+
+            </select>
+
+            <button id="addFoodBtn">
+                Add Food
+            </button>
+
+        </div>
+
+        <!-- Water Tracker -->
+
+        <div class="water-section">
+
+            <h2>
+                💧 Water Tracker
+            </h2>
+
+            <div class="water-buttons">
+
+                <button class="water-btn" data-water="250">
+                    +250ml
+                </button>
+
+                <button class="water-btn" data-water="500">
+                    +500ml
+                </button>
+
+                <button class="water-btn" data-water="1000">
+                    +1L
+                </button>
+
+            </div>
+
+        </div>
+
+        <!-- Food Logs -->
+
+        <div class="logs-section">
+
+            <h2>
+                Today's Food Log
+            </h2>
+
+            <div id="foodLogs">
+
+            </div>
+
+        </div>
+
+    </main>
+
+</div>
+
+<script src="js/health.js"></script>
+
+</body>
+</html>
+

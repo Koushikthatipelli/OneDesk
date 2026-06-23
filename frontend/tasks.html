@@ -1,0 +1,80 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OneDesk Tasks</title>
+
+    <link rel="stylesheet" href="css/tasks.css">
+</head>
+<body>
+
+<div class="container">
+
+    <aside class="sidebar">
+
+        <div class="logo">OneDesk</div>
+
+        <nav>
+            <a href="home.html">🏠 Home</a>
+            <a href="tasks.html" class="active">✅ Tasks</a>
+            <a href="notes.html">📝 Notes</a>
+            <a href="profile.html">👤 Profile</a>
+        </nav>
+
+    </aside>
+
+    <main class="main-content">
+
+        <h1>Tasks</h1>
+       
+<div class="progress-section">
+
+    <div class="progress-header">
+
+        <span>Today's Progress</span>
+
+        <span id="progressText">
+            0%
+        </span>
+
+    </div>
+
+    <div class="progress-bar">
+
+        <div
+            id="progressFill"
+            class="progress-fill">
+        </div>
+
+    </div>
+
+</div>
+
+
+
+        <div class="task-box">
+
+            <input
+                type="text"
+                id="taskInput"
+                placeholder="Enter new task..."
+            >
+
+            <button id="addTaskBtn">
+                Add Task
+            </button>
+
+        </div>
+
+        <ul id="taskList"></ul>
+
+    </main>
+
+</div>
+
+<script src="js/tasks.js"></script>
+
+</body>
+</html>

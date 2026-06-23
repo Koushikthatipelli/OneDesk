@@ -1,0 +1,142 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OneDesk Home</title>
+
+    <link rel="stylesheet" href="css/home.css">
+</head>
+<body>
+
+<div class="bg-blur blur1"></div>
+<div class="bg-blur blur2"></div>
+
+<div class="container">
+
+    <aside class="sidebar">
+
+        <div class="logo">
+            OneDesk
+        </div>
+
+        <nav>
+
+            <a href="home.html" class="active">
+                🏠 Home
+            </a>
+
+            <a href="tasks.html">
+                ✅ Tasks
+            </a>
+
+            <a href="notes.html">
+                📝 Notes
+            </a>
+
+            <a href="health.html">
+                💪 Health
+            </a>
+
+            <a href="profile.html">
+                👤 Profile
+            </a>
+
+        </nav>
+
+    </aside>
+
+<main class="main-content">
+
+    <div class="hero">
+
+        <p class="small-text" id="greeting">
+            Good Evening
+        </p>
+
+        <h1 id="userName">
+            Koushik 👋
+        </h1>
+
+        <div class="time-box">
+
+            <h2 id="liveTime">
+                10:30 PM
+            </h2>
+
+            <p id="liveDate">
+                Monday, June 23
+            </p>
+
+        </div>
+
+        <p class="subtitle">
+            Stay focused.
+            One step at a time.
+        </p>
+
+    </div>
+
+    <div class="cards">
+
+        <div class="card" onclick="goTasks()">
+
+            <h2>✅ Tasks</h2>
+
+            <p id="taskCount">
+                Loading...
+            </p>
+
+            <span>Open Workspace →</span>
+
+        </div>
+
+        <div class="card" onclick="goNotes()">
+
+            <h2>📝 Notes</h2>
+
+            <p>
+                Capture ideas, plans
+                and important notes.
+            </p>
+
+            <span>Open Workspace →</span>
+
+        </div>
+
+        <div class="card" onclick="goHealth()">
+
+            <h2>💪 Health</h2>
+
+            <p>
+                Track calories,
+                protein and water
+                intake daily.
+            </p>
+
+            <span>Open Workspace →</span>
+
+        </div>
+
+    </div>
+
+    <div class="quote-card">
+
+        <h3>Today's Focus</h3>
+
+        <p id="dailyQuote">
+            Small progress is still progress.
+        </p>
+
+    </div>
+
+</main>
+
+</div>
+
+<script src="js/home.js"></script>
+
+</body>
+</html>
+

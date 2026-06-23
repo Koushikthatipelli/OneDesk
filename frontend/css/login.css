@@ -1,0 +1,156 @@
+```css
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',sans-serif;
+}
+
+body{
+    background:#FAF7F2;
+    min-height:100vh;
+}
+
+.container{
+    display:flex;
+    min-height:100vh;
+}
+
+/* Left */
+
+.left-panel{
+    flex:1;
+    padding:80px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+}
+
+.brand{
+    position:absolute;
+    top:40px;
+    left:60px;
+    font-size:34px;
+    font-weight:700;
+    color:#5C4033;
+}
+
+.tag{
+    color:#8B5E3C;
+    letter-spacing:3px;
+    font-size:13px;
+    margin-bottom:20px;
+}
+
+.hero-content h1{
+    font-size:72px;
+    line-height:1.1;
+    color:#5C4033;
+    max-width:700px;
+}
+
+.description{
+    margin-top:25px;
+    color:#6B7280;
+    font-size:20px;
+    max-width:500px;
+    line-height:1.8;
+}
+
+/* Right */
+
+.right-panel{
+    width:500px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:40px;
+}
+
+.login-card{
+    width:100%;
+    background:white;
+    border:1px solid #E7DED4;
+    border-radius:28px;
+    padding:40px;
+    animation:slideUp .6s ease;
+}
+
+.login-card h2{
+    font-size:34px;
+    color:#5C4033;
+    margin-bottom:10px;
+}
+
+.subtitle{
+    color:#6B7280;
+    margin-bottom:30px;
+}
+
+form{
+    display:flex;
+    flex-direction:column;
+    gap:18px;
+}
+
+input{
+    padding:16px;
+    border:1px solid #E7DED4;
+    border-radius:14px;
+    outline:none;
+    font-size:16px;
+}
+
+input:focus{
+    border-color:#8B5E3C;
+}
+
+button{
+    background:#8B5E3C;
+    color:white;
+    border:none;
+    padding:16px;
+    border-radius:14px;
+    cursor:pointer;
+    font-size:16px;
+    transition:.3s;
+}
+
+button:hover{
+    background:#6B4A36;
+}
+
+@keyframes slideUp{
+
+    from{
+        opacity:0;
+        transform:translateY(30px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+
+}
+
+@media(max-width:900px){
+
+    .container{
+        flex-direction:column;
+    }
+
+    .left-panel{
+        padding:40px;
+    }
+
+    .hero-content h1{
+        font-size:42px;
+    }
+
+    .right-panel{
+        width:100%;
+    }
+
+}
+```
