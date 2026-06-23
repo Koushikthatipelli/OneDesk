@@ -2,15 +2,21 @@
 const express = require("express");
 
 const router = express.Router();
+
 const auth =
     require("../middleware/authMiddleware");
+
 const {
     addFood,
     getFoods,
     addWater,
-    getWater
+    getWater,
+    deleteFood,
+    deleteWater,
+    getAnalytics
 } = require(
     "../controllers/healthController"
+
 );
 
 // Food Routes
@@ -27,6 +33,17 @@ router.get(
     getFoods
 );
 
+router.delete(
+    "/food/:id",
+    auth,
+    deleteFood
+);
+router.get(
+    "/analytics",
+    auth,
+    getAnalytics
+);
+
 // Water Routes
 
 router.post(
@@ -39,6 +56,12 @@ router.get(
     "/water",
     auth,
     getWater
+);
+
+router.delete(
+    "/water/:id",
+    auth,
+    deleteWater
 );
 
 module.exports = router;

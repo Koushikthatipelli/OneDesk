@@ -1,4 +1,3 @@
-
 [
   {
     "name": "Egg",
@@ -9,21 +8,22 @@
     "fats": 5
   },
   {
-    "name": "Banana",
-    "serving": "1 Medium",
-    "calories": 105,
-    "protein": 1.3,
-    "carbs": 27,
-    "fats": 0.3
+    "name": "Boiled Egg",
+    "serving": "1 Egg",
+    "calories": 70,
+    "protein": 6,
+    "carbs": 0.5,
+    "fats": 5
   },
   {
-    "name": "Milk",
-    "serving": "250ml",
-    "calories": 150,
-    "protein": 8,
-    "carbs": 12,
-    "fats": 8
+    "name": "Omelette",
+    "serving": "1 Piece",
+    "calories": 90,
+    "protein": 6,
+    "carbs": 1,
+    "fats": 7
   },
+
   {
     "name": "White Rice",
     "serving": "100g",
@@ -33,6 +33,104 @@
     "fats": 0.3
   },
   {
+    "name": "Brown Rice",
+    "serving": "100g",
+    "calories": 111,
+    "protein": 2.6,
+    "carbs": 23,
+    "fats": 0.9
+  },
+  {
+    "name": "Curd Rice",
+    "serving": "100g",
+    "calories": 140,
+    "protein": 4,
+    "carbs": 22,
+    "fats": 4
+  },
+  {
+    "name": "Lemon Rice",
+    "serving": "100g",
+    "calories": 180,
+    "protein": 4,
+    "carbs": 30,
+    "fats": 5
+  },
+  {
+    "name": "Tomato Rice",
+    "serving": "100g",
+    "calories": 175,
+    "protein": 4,
+    "carbs": 29,
+    "fats": 4
+  },
+
+  {
+    "name": "Idli",
+    "serving": "1 Piece",
+    "calories": 58,
+    "protein": 2,
+    "carbs": 12,
+    "fats": 0.4
+  },
+  {
+    "name": "Dosa",
+    "serving": "1 Piece",
+    "calories": 168,
+    "protein": 4,
+    "carbs": 30,
+    "fats": 3
+  },
+  {
+    "name": "Masala Dosa",
+    "serving": "1 Piece",
+    "calories": 250,
+    "protein": 6,
+    "carbs": 40,
+    "fats": 8
+  },
+  {
+    "name": "Rava Dosa",
+    "serving": "1 Piece",
+    "calories": 190,
+    "protein": 4,
+    "carbs": 31,
+    "fats": 5
+  },
+  {
+    "name": "Uttapam",
+    "serving": "1 Piece",
+    "calories": 180,
+    "protein": 5,
+    "carbs": 28,
+    "fats": 4
+  },
+  {
+    "name": "Pongal",
+    "serving": "100g",
+    "calories": 170,
+    "protein": 5,
+    "carbs": 28,
+    "fats": 4
+  },
+  {
+    "name": "Upma",
+    "serving": "100g",
+    "calories": 190,
+    "protein": 5,
+    "carbs": 32,
+    "fats": 5
+  },
+  {
+    "name": "Poha",
+    "serving": "100g",
+    "calories": 180,
+    "protein": 4,
+    "carbs": 34,
+    "fats": 3
+  },
+
+  {
     "name": "Chapati",
     "serving": "1 Piece",
     "calories": 120,
@@ -41,12 +139,111 @@
     "fats": 3
   },
   {
+    "name": "Roti",
+    "serving": "1 Piece",
+    "calories": 120,
+    "protein": 3,
+    "carbs": 20,
+    "fats": 3
+  },
+  {
+    "name": "Paratha",
+    "serving": "1 Piece",
+    "calories": 260,
+    "protein": 6,
+    "carbs": 32,
+    "fats": 12
+  },
+  {
+    "name": "Aloo Paratha",
+    "serving": "1 Piece",
+    "calories": 290,
+    "protein": 7,
+    "carbs": 38,
+    "fats": 12
+  },
+
+  {
     "name": "Chicken Breast",
     "serving": "100g",
     "calories": 165,
     "protein": 31,
     "carbs": 0,
     "fats": 3.6
+  },
+  {
+    "name": "Chicken Curry",
+    "serving": "100g",
+    "calories": 210,
+    "protein": 22,
+    "carbs": 4,
+    "fats": 11
+  },
+  {
+    "name": "Chicken Fry",
+    "serving": "100g",
+    "calories": 250,
+    "protein": 24,
+    "carbs": 5,
+    "fats": 15
+  },
+  {
+    "name": "Chicken Tikka",
+    "serving": "100g",
+    "calories": 180,
+    "protein": 27,
+    "carbs": 2,
+    "fats": 7
+  },
+  {
+    "name": "Grilled Chicken",
+    "serving": "100g",
+    "calories": 190,
+    "protein": 30,
+    "carbs": 0,
+    "fats": 6
+  },
+
+  {
+    "name": "Fish Curry",
+    "serving": "100g",
+    "calories": 180,
+    "protein": 20,
+    "carbs": 4,
+    "fats": 9
+  },
+  {
+    "name": "Fish Fry",
+    "serving": "100g",
+    "calories": 220,
+    "protein": 22,
+    "carbs": 3,
+    "fats": 13
+  },
+
+  {
+    "name": "Dal",
+    "serving": "100g",
+    "calories": 116,
+    "protein": 9,
+    "carbs": 20,
+    "fats": 0.4
+  },
+  {
+    "name": "Rajma",
+    "serving": "100g",
+    "calories": 127,
+    "protein": 8.7,
+    "carbs": 22,
+    "fats": 0.5
+  },
+  {
+    "name": "Chole",
+    "serving": "100g",
+    "calories": 164,
+    "protein": 9,
+    "carbs": 27,
+    "fats": 2.6
   },
   {
     "name": "Paneer",
@@ -57,13 +254,39 @@
     "fats": 20
   },
   {
-    "name": "Curd",
+    "name": "Tofu",
     "serving": "100g",
-    "calories": 98,
-    "protein": 11,
-    "carbs": 3.4,
-    "fats": 4.3
+    "calories": 76,
+    "protein": 8,
+    "carbs": 2,
+    "fats": 4
   },
+
+  {
+    "name": "Milk",
+    "serving": "250ml",
+    "calories": 150,
+    "protein": 8,
+    "carbs": 12,
+    "fats": 8
+  },
+  {
+    "name": "Protein Shake",
+    "serving": "300ml",
+    "calories": 180,
+    "protein": 25,
+    "carbs": 8,
+    "fats": 4
+  },
+  {
+    "name": "Whey Protein",
+    "serving": "1 Scoop",
+    "calories": 120,
+    "protein": 24,
+    "carbs": 3,
+    "fats": 1.5
+  },
+
   {
     "name": "Apple",
     "serving": "1 Medium",
@@ -73,12 +296,247 @@
     "fats": 0.3
   },
   {
+    "name": "Banana",
+    "serving": "1 Medium",
+    "calories": 105,
+    "protein": 1.3,
+    "carbs": 27,
+    "fats": 0.3
+  },
+  {
+    "name": "Orange",
+    "serving": "1 Medium",
+    "calories": 62,
+    "protein": 1.2,
+    "carbs": 15,
+    "fats": 0.2
+  },
+  {
+    "name": "Mango",
+    "serving": "100g",
+    "calories": 60,
+    "protein": 0.8,
+    "carbs": 15,
+    "fats": 0.4
+  },
+
+  {
+    "name": "Almonds",
+    "serving": "10 Pieces",
+    "calories": 70,
+    "protein": 2.6,
+    "carbs": 2.5,
+    "fats": 6
+  },
+  {
+    "name": "Cashews",
+    "serving": "10 Pieces",
+    "calories": 87,
+    "protein": 2.9,
+    "carbs": 5,
+    "fats": 7
+  },
+  {
+    "name": "Peanuts",
+    "serving": "30g",
+    "calories": 170,
+    "protein": 8,
+    "carbs": 6,
+    "fats": 14
+  },
+
+  {
     "name": "Oats",
     "serving": "100g",
     "calories": 389,
     "protein": 17,
     "carbs": 66,
     "fats": 7
+  },
+  {
+    "name": "Corn Flakes",
+    "serving": "30g",
+    "calories": 110,
+    "protein": 2,
+    "carbs": 24,
+    "fats": 0.3
   }
-]
+,
 
+{
+  "name": "Veg Biryani",
+  "serving": "100g",
+  "calories": 170,
+  "protein": 4,
+  "carbs": 28,
+  "fats": 5
+},
+{
+  "name": "Chicken Biryani",
+  "serving": "100g",
+  "calories": 220,
+  "protein": 12,
+  "carbs": 25,
+  "fats": 8
+},
+{
+  "name": "Mutton Biryani",
+  "serving": "100g",
+  "calories": 250,
+  "protein": 13,
+  "carbs": 24,
+  "fats": 11
+},
+{
+  "name": "Veg Pulao",
+  "serving": "100g",
+  "calories": 160,
+  "protein": 4,
+  "carbs": 27,
+  "fats": 4
+},
+{
+  "name": "Fried Rice",
+  "serving": "100g",
+  "calories": 180,
+  "protein": 5,
+  "carbs": 30,
+  "fats": 5
+},
+{
+  "name": "Noodles",
+  "serving": "100g",
+  "calories": 190,
+  "protein": 5,
+  "carbs": 33,
+  "fats": 4
+},
+{
+  "name": "Veg Manchurian",
+  "serving": "100g",
+  "calories": 180,
+  "protein": 4,
+  "carbs": 20,
+  "fats": 9
+},
+{
+  "name": "Chicken Manchurian",
+  "serving": "100g",
+  "calories": 210,
+  "protein": 18,
+  "carbs": 10,
+  "fats": 11
+},
+{
+  "name": "Burger",
+  "serving": "1 Piece",
+  "calories": 295,
+  "protein": 13,
+  "carbs": 30,
+  "fats": 14
+},
+{
+  "name": "Pizza",
+  "serving": "1 Slice",
+  "calories": 285,
+  "protein": 12,
+  "carbs": 36,
+  "fats": 10
+},
+{
+  "name": "French Fries",
+  "serving": "100g",
+  "calories": 312,
+  "protein": 3,
+  "carbs": 41,
+  "fats": 15
+},
+{
+  "name": "Samosa",
+  "serving": "1 Piece",
+  "calories": 262,
+  "protein": 4,
+  "carbs": 24,
+  "fats": 17
+},
+{
+  "name": "Pani Puri",
+  "serving": "6 Pieces",
+  "calories": 180,
+  "protein": 4,
+  "carbs": 34,
+  "fats": 3
+},
+{
+  "name": "Pav Bhaji",
+  "serving": "1 Plate",
+  "calories": 400,
+  "protein": 10,
+  "carbs": 50,
+  "fats": 18
+},
+{
+  "name": "Vada Pav",
+  "serving": "1 Piece",
+  "calories": 290,
+  "protein": 7,
+  "carbs": 40,
+  "fats": 11
+},
+{
+  "name": "Ice Cream",
+  "serving": "100g",
+  "calories": 207,
+  "protein": 3.5,
+  "carbs": 24,
+  "fats": 11
+},
+{
+  "name": "Chocolate",
+  "serving": "50g",
+  "calories": 270,
+  "protein": 3,
+  "carbs": 30,
+  "fats": 15
+},
+{
+  "name": "Tea",
+  "serving": "1 Cup",
+  "calories": 40,
+  "protein": 1,
+  "carbs": 6,
+  "fats": 1
+},
+{
+  "name": "Coffee",
+  "serving": "1 Cup",
+  "calories": 30,
+  "protein": 1,
+  "carbs": 4,
+  "fats": 1
+},
+{
+  "name": "Coconut Water",
+  "serving": "250ml",
+  "calories": 45,
+  "protein": 1,
+  "carbs": 9,
+  "fats": 0
+},
+{
+  "name": "Lassi",
+  "serving": "250ml",
+  "calories": 180,
+  "protein": 6,
+  "carbs": 25,
+  "fats": 6
+},
+{
+  "name": "Buttermilk",
+  "serving": "250ml",
+  "calories": 60,
+  "protein": 3,
+  "carbs": 7,
+  "fats": 2
+}
+]
