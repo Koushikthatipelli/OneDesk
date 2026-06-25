@@ -14,7 +14,7 @@ async function loadTasks() {
     try {
 
         const response = await fetch(
-            '{API_URL}/tasks',
+    `${API_URL}/todos`,
             {
                 headers: {
                     Authorization: `Bearer ${token}`
@@ -180,12 +180,10 @@ async function toggleTask(id, completed) {
 async function deleteTask(id) {
 
     try {
-
-  await fetch(
-    `${API_URL}/todos`,
+await fetch(
+    `${API_URL}/todos/${id}`,
     {
         method: "DELETE",
-
         headers: {
             Authorization:
             `Bearer ${token}`

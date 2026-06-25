@@ -206,7 +206,7 @@ async function deleteNote(id) {
 
     try {
 
-       fetch(
+      await fetch(
     `${API_URL}/notes/${id}`,
     {
         method: "DELETE",
@@ -215,6 +215,8 @@ async function deleteNote(id) {
         }
     }
 );
+
+loadNotes();
 
         loadNotes();
 

@@ -200,9 +200,9 @@ async function loadHealth() {
 
     try {
 
-        const foodResponse =
-            await fetch(
-    `${API_URL}/health/food`,
+       const foodResponse =
+await fetch(
+    `${API_URL}/health/water`,
                 {
                     headers:{
                         Authorization:
@@ -280,8 +280,8 @@ async function loadHealth() {
             fats.toFixed(1) + "g";
 
         const waterResponse =
-                  await fetch(
-    `${API_URL}/health`,
+          await fetch(
+    `${API_URL}/health/water`,
                 {
                     headers:{
                         Authorization:
@@ -470,7 +470,7 @@ document
                 );
 
             await fetch(
-                `${API_URL}/health/food`,
+    `${API_URL}/health/water`,
                 {
                     method:"POST",
 
@@ -593,10 +593,9 @@ async function deleteWater(id) {
 async function loadAnalytics() {
 
     try {
-
-        const response =
-            await fetch(
-               `${API_URL}/health/food`,
+const response =
+await fetch(
+    `${API_URL}/health/analytics`,
                 {
                     headers:{
                         Authorization:
