@@ -1,4 +1,4 @@
-
+console.log("Health JS Version 2");
 let waterChart;
 let calorieChart;
 
@@ -200,16 +200,16 @@ async function loadHealth() {
 
     try {
 
-       const foodResponse =
+     const foodResponse =
 await fetch(
-    `${API_URL}/health/water`,
-                {
-                    headers:{
-                        Authorization:
-                        `Bearer ${token}`
-                    }
-                }
-            );
+    `${API_URL}/health/food`,
+    {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    }
+);
+            
 
         const foods =
             await foodResponse.json();
