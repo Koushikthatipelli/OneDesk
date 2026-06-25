@@ -12,8 +12,8 @@ loginForm.addEventListener("submit", async function (e) {
 
     try {
 
-              await fetch(
-    `${API_URL}/login`,
+        const response = await fetch(
+            `${API_URL}/auth/login`,
             {
                 method: "POST",
                 headers: {
@@ -48,7 +48,10 @@ loginForm.addEventListener("submit", async function (e) {
         alert("Login Successful!");
 
         window.location.href = "home.html";
-    } catch (error) {
+
+    }
+
+    catch (error) {
 
         console.error(error);
 
