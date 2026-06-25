@@ -378,7 +378,7 @@ addFoodBtn.addEventListener(
             }
 
             await fetch(
-                "http://localhost:5000/api/health/food",
+         `${API_URL}/health/food`,
                 {
                     method:"POST",
 
@@ -430,7 +430,7 @@ async function deleteFood(id) {
     try {
 
         await fetch(
-            `http://localhost:5000/api/health/food/${id}`,
+            `${API_URL}/health/food/${id}`,
             {
                 method: "DELETE",
 
@@ -470,7 +470,7 @@ document
                 );
 
             await fetch(
-                "http://localhost:5000/api/health/water",
+                `${API_URL}/health/food`,
                 {
                     method:"POST",
 
@@ -561,7 +561,7 @@ async function deleteWater(id) {
 
         await fetch(
 
-            `http://localhost:5000/api/health/water/${id}`,
+           `${API_URL}/health/water/${id}`,
 
             {
 
@@ -596,7 +596,7 @@ async function loadAnalytics() {
 
         const response =
             await fetch(
-                "http://localhost:5000/api/health/analytics",
+               `${API_URL}/health/food`,
                 {
                     headers:{
                         Authorization:

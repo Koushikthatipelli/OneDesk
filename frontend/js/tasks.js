@@ -117,7 +117,7 @@ async () => {
         }
 
         await fetch(
-            "http://localhost:5000/api/todos",
+            `${API_URL}/todos`,
             {
                 method: "POST",
 
@@ -152,23 +152,20 @@ async function toggleTask(id, completed) {
     try {
 
         await fetch(
-            `http://localhost:5000/api/todos/${id}`,
-            {
-                method: "PUT",
+    `${API_URL}/todos/${id}`,
+    {
+        method: "PUT",
 
-                headers: {
-                    "Content-Type":
-                    "application/json",
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`
+        },
 
-                    Authorization:
-                    `Bearer ${token}`
-                },
-
-                body: JSON.stringify({
-                    completed
-                })
-            }
-        );
+        body: JSON.stringify({
+            completed
+        })
+    }
+);
 
         loadTasks();
 
@@ -184,18 +181,17 @@ async function deleteTask(id) {
 
     try {
 
-        await fetch(
-            `http://localhost:5000/api/todos/${id}`,
-            {
-                method: "DELETE",
+  await fetch(
+    `${API_URL}/todos`,
+    {
+        method: "DELETE",
 
-                headers: {
-                    Authorization:
-                    `Bearer ${token}`
-                }
-            }
-        );
-
+        headers: {
+            Authorization:
+            `Bearer ${token}`
+        }
+    }
+);
         loadTasks();
 
     } catch (error) {

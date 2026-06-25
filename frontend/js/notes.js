@@ -168,7 +168,7 @@ async () => {
         }
 
         await fetch(
-            "http://localhost:5000/api/notes",
+           `${API_URL}/notes`,
             {
                 method: "POST",
 
@@ -206,17 +206,15 @@ async function deleteNote(id) {
 
     try {
 
-        await fetch(
-            `http://localhost:5000/api/notes/${id}`,
-            {
-                method: "DELETE",
-
-                headers: {
-                    Authorization:
-                    `Bearer ${token}`
-                }
-            }
-        );
+       fetch(
+    `${API_URL}/notes/${id}`,
+    {
+        method: "DELETE",
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    }
+);
 
         loadNotes();
 
