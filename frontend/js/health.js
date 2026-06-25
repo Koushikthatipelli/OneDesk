@@ -202,7 +202,7 @@ async function loadHealth() {
 
         const foodResponse =
             await fetch(
-                "http://localhost:5000/api/health/food",
+    `${API_URL}/health/food`,
                 {
                     headers:{
                         Authorization:
@@ -281,7 +281,7 @@ async function loadHealth() {
 
         const waterResponse =
             await fetch(
-                "http://localhost:5000/api/health/water",
+                '${API_URL}/health',
                 {
                     headers:{
                         Authorization:

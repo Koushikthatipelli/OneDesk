@@ -56,7 +56,7 @@ async function loadNotes() {
 
         const response =
             await fetch(
-                "http://localhost:5000/api/notes",
+                '${API_URL}/notes',
                 {
                     headers: {
                         Authorization:

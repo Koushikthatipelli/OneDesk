@@ -14,7 +14,7 @@ async function loadTasks() {
     try {
 
         const response = await fetch(
-            "http://localhost:5000/api/todos",
+            '{API_URL}/tasks',
             {
                 headers: {
                     Authorization: `Bearer ${token}`
