@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OneDesk Login</title>
+    <title>OneDesk Register</title>
 
     <link rel="stylesheet" href="css/login.css">
 </head>
@@ -43,30 +43,57 @@
 
         <div class="login-card">
 
-            <h2>
-                Welcome Back
-            </h2>
+           <h1>Create Account</h1>
 
+<p>Create your OneDesk account to get started.</p>
             <p class="subtitle">
                 Sign in to continue to OneDesk
             </p>
 
-            <form id="loginForm">
+            <form id="registerForm">
+                <div class="input-group">
 
-                <input
-                    type="email"
-                    placeholder="Email Address"
-                    required
-                >
+    <label>
+        Full Name
+    </label>
 
-                <input
-                    type="password"
-                    placeholder="Password"
-                    required
-                >
+    <input
+        type="text"
+        id="name"
+        placeholder="Enter your full name"
+        required
+    >
 
+</div>
+
+               <input
+    type="email"
+    id="email"
+    placeholder="Email Address"
+    required
+>
+<input
+    type="password"
+    id="password"
+    placeholder="Password"
+    required
+>
+<div class="input-group">
+
+    <label>
+        Confirm Password
+    </label>
+
+    <input
+        type="password"
+        id="confirmPassword"
+        placeholder="Confirm password"
+        required
+    >
+
+</div>
                 <button type="submit">
-                    Login
+                    Register
                 </button>
 
             </form>
@@ -75,14 +102,14 @@
 
     </div>
 <p class="register-link">
-    Don't have an account?
-    <a href="register.html">
-        Register
-    </a>
+   Already have an account?
+
+<a href="login.html">
+    Login
+</a>
 </p>
 </div>
 <script src="js/config.js"></script>
-<script src="js/login.js"></script>
-
+<script src="js/register.js"></script>
 </body>
 </html>

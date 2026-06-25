@@ -51,7 +51,7 @@ async function loadTaskCount() {
 
         const response =
             await fetch(
-                '${API_URL}/home',
+              (`${API_URL}/todos`),
                 {
                     headers: {
                         Authorization:
@@ -66,7 +66,7 @@ async function loadTaskCount() {
         document.getElementById(
             "taskCount"
         ).textContent =
-        `${tasks.length} Tasks Available`;
+            `${tasks.length} Tasks Available`;
 
     }
 
@@ -77,7 +77,6 @@ async function loadTaskCount() {
     }
 
 }
-
 loadTaskCount();
 
 // Quotes

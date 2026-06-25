@@ -280,8 +280,8 @@ async function loadHealth() {
             fats.toFixed(1) + "g";
 
         const waterResponse =
-            await fetch(
-                '${API_URL}/health',
+                  await fetch(
+    `${API_URL}/health`,
                 {
                     headers:{
                         Authorization:
