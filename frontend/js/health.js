@@ -199,6 +199,7 @@ const availableFoods = [
 async function loadHealth() {
 
     try {
+         
 
      const foodResponse =
 await fetch(
@@ -355,6 +356,7 @@ water.logs.forEach(log => {
     }
 
     catch(error){
+        hideLoader();
 
         console.error(error);
 
@@ -376,7 +378,7 @@ addFoodBtn.addEventListener(
             ){
                 return;
             }
-
+            showLoader("Adding Food...");
             await fetch(
          `${API_URL}/health/food`,
                 {
@@ -409,12 +411,17 @@ addFoodBtn.addEventListener(
 
             foodName.value = "";
             quantity.value = "";
+            hideLoader();
+showSuccess("Food Added Successfully 🍽️");
 
             loadHealth();
 
         }
 
         catch(error){
+            hideLoader();
+
+    showError("Something went wrong");
 
             console.error(error);
 
@@ -428,6 +435,7 @@ addFoodBtn.addEventListener(
 async function deleteFood(id) {
 
     try {
+        showLoader("Deleting Food...");
 
         await fetch(
             `${API_URL}/health/food/${id}`,
@@ -440,6 +448,9 @@ async function deleteFood(id) {
                 }
             }
         );
+        showSuccess("Food Deleted Successfully");
+
+        hideLoader();
         loadAnalytics();
 
         loadHealth();
@@ -447,7 +458,8 @@ async function deleteFood(id) {
     }
 
     catch (error) {
-
+        hideLoader();
+         showError("Something went wrong");
         console.error(error);
 
     }
@@ -468,6 +480,7 @@ document
                 Number(
                     button.dataset.water
                 );
+                showLoader("Updating Water...");
 
             await fetch(
     `${API_URL}/health/water`,
@@ -488,8 +501,9 @@ document
                 }
             );
             loadAnalytics();
-
+            showSuccess("Water Intake Updated 💧");
             loadHealth();
+            hideLoader();
 
         }
     );
@@ -558,6 +572,7 @@ foodName.addEventListener(
 async function deleteWater(id) {
 
     try {
+        showLoader("Deleting Water...");
 
         await fetch(
 
@@ -577,14 +592,17 @@ async function deleteWater(id) {
             }
 
         );
-
+        showSuccess("Water Entry Deleted");
         loadHealth();
+        hideLoader();
 
     }
 
     catch (error) {
+         showError("Something went wrong");
 
         console.error(error);
+        hideLoader();
 
     }
 
@@ -735,7 +753,7 @@ waterChart = new Chart(
     }
 
     catch(error){
-
+       hideLoader();
         console.error(error);
 
     }

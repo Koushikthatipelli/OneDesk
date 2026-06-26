@@ -94,6 +94,7 @@ async function loadTasks() {
     } catch (error) {
 
         console.error(error);
+        showError("Unable to process task");
 
     }
 
@@ -110,7 +111,7 @@ async () => {
 
         if (!title) {
 
-            alert("Enter a task");
+           showWarning("Please enter a task");
 
             return;
 
@@ -136,13 +137,14 @@ async () => {
         );
 
         taskInput.value = "";
+        showSuccess("Task Added Successfully");
 
         loadTasks();
 
     } catch (error) {
 
         console.error(error);
-
+showError("Unable to process task");
     }
 
 });
@@ -150,6 +152,7 @@ async () => {
 async function toggleTask(id, completed) {
 
     try {
+        showLoader("Updating Task...");
 
         await fetch(
     `${API_URL}/todos/${id}`,
@@ -166,13 +169,16 @@ async function toggleTask(id, completed) {
         })
     }
 );
-
+        hideLoader();
+        showSuccess("Task Deleted Successfully");
         loadTasks();
 
     } catch (error) {
+        hideLoader();
+       
+console.error(error);
 
-        console.error(error);
-
+showError("Unable to process task");
     }
 
 }
@@ -180,6 +186,7 @@ async function toggleTask(id, completed) {
 async function deleteTask(id) {
 
     try {
+        showLoader("Deleting Task...");
 await fetch(
     `${API_URL}/todos/${id}`,
     {
@@ -190,11 +197,14 @@ await fetch(
         }
     }
 );
+        hideLoader();
         loadTasks();
 
     } catch (error) {
 
         console.error(error);
+        hideLoader();
+        showError("Unable to process task");
 
     }
 

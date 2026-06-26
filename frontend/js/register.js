@@ -21,17 +21,17 @@ const password =
 
         if (password !== confirmPassword) {
 
-            alert(
-                "Passwords do not match!"
-            );
+            showWarning("Passwords do not match");
 
             return;
 
         }
 
         try {
+            showLoader("Creating Account...");
 
             const response =
+
                 await fetch(
                     `${API_URL}/auth/register`,
                     {
@@ -58,24 +58,21 @@ const password =
 
             if (!response.ok) {
 
-                alert(
-                    data.message
-                );
+               showError(data.message);
 
                 return;
 
             }
 
-            alert(
-                "Registration Successful!"
-            );
-
+            showSuccess("Account Created Successfully");
+           hideLoader();
             window.location.href =
                 "login.html";
 
         }
 
         catch (error) {
+             hideLoader();
 
             console.error(
                 error

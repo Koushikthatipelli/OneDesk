@@ -153,6 +153,7 @@ saveNoteBtn.addEventListener(
 async () => {
 
     try {
+       
 
         const content =
             noteInput.value.trim();
@@ -166,7 +167,7 @@ async () => {
             return;
 
         }
-
+         showLoader("Saving Note...");
         await fetch(
            `${API_URL}/notes`,
             {
@@ -187,14 +188,18 @@ async () => {
         );
 
         noteInput.value = "";
+        showSuccess("Note Saved Successfully");
 
         loadNotes();
+        hideLoader();
 
     }
 
     catch (error) {
 
         console.error(error);
+        showError("Unable to process note");
+        hideLoader();
 
     }
 
@@ -205,6 +210,7 @@ async () => {
 async function deleteNote(id) {
 
     try {
+        showLoader("Deleting Note...");
 
       await fetch(
     `${API_URL}/notes/${id}`,
@@ -217,14 +223,19 @@ async function deleteNote(id) {
 );
 
 loadNotes();
+showSuccess("Note Deleted Successfully");
+
 
         loadNotes();
+        hideLoader();
 
     }
 
     catch (error) {
 
         console.error(error);
+        showError("Unable to process note");
+        hideLoader();
 
     }
 

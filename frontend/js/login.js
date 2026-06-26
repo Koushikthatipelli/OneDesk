@@ -11,6 +11,7 @@ loginForm.addEventListener("submit", async function (e) {
         document.querySelector('input[type="password"]').value;
 
     try {
+        showLoader("Signing In...");
 
         const response = await fetch(
             `${API_URL}/auth/login`,
@@ -27,13 +28,15 @@ loginForm.addEventListener("submit", async function (e) {
         );
 
         const data = await response.json();
+if (!response.ok) {
 
-        if (!response.ok) {
+    hideLoader();
 
-            alert(data.message);
-            return;
+    showError(data.message);
 
-        }
+    return;
+
+}
 
         localStorage.setItem(
             "token",
@@ -44,19 +47,21 @@ loginForm.addEventListener("submit", async function (e) {
             "user",
             JSON.stringify(data.user)
         );
+hideLoader();
 
-        alert("Login Successful!");
+showSuccess("Login Successful");
 
-        window.location.href = "home.html";
-
+window.location.href = "home.html";
     }
 
-    catch (error) {
+    catch(error){
 
-        console.error(error);
+     hideLoader();
 
-        alert("Server Error");
+    console.error(error);
 
-    }
+    showError("Server Error");
+
+}
 
 });
