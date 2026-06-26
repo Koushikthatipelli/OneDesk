@@ -245,3 +245,20 @@ body::before{
     margin-top:50px;
     flex-wrap:wrap;
 }
+.logo-area{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+}
+
+.nav-logo{
+
+    width:50px;
+
+    border-radius:50%;
+
+}

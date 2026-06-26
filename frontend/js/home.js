@@ -50,7 +50,7 @@ async function loadTaskCount() {
     try {
 
         const response =
-            await fetch(
+            (
               (`${API_URL}/todos`),
                 {
                     headers: {
