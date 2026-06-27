@@ -34,17 +34,17 @@ exports.addFood = async (req, res) => {
 
 const factor = Number(quantity) / 100;
 
-console.log("Quantity:", quantity);
-console.log("Factor:", factor);
-console.log("Food:", food);
+const calories =
+    Number((food.calories * factor).toFixed(1));
 
-const calories = Number(food.calories) * factor;
+const protein =
+    Number((food.protein * factor).toFixed(1));
 
-console.log("Calculated Calories:", calories);
+const carbs =
+    Number((food.carbs * factor).toFixed(1));
 
-const protein = Number(food.protein) * factor;
-const carbs = Number(food.carbs) * factor;
-const fats = Number(food.fats) * factor;
+const fats =
+    Number((food.fats * factor).toFixed(1));
 
 
         const foodLog =
