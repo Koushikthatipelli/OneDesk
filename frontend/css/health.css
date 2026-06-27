@@ -490,3 +490,28 @@ body{
 
 }
 
+.input-label{
+
+    display:block;
+
+    margin-bottom:8px;
+
+    margin-top:15px;
+
+    font-weight:600;
+
+    color:#fff;
+
+}
+
+.input-hint{
+
+    display:block;
+
+    margin-top:6px;
+
+    color:#9CA3AF;
+
+    font-size:13px;
+
+}

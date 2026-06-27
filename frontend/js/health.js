@@ -247,8 +247,8 @@ await fetch(
                 </p>
 
                 <p>
-                    Quantity:
-                    ${food.quantity}
+                    Weight:
+${food.quantity} 
                 </p>
 
                 <p>

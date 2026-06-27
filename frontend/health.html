@@ -98,12 +98,16 @@
          
 <div class="search-wrapper">
 
-    <input
-        type="text"
-        id="foodName"
-        placeholder="Search Food..."
-        autocomplete="off"
-    >
+   <label for="foodName" class="input-label">
+    Food Name
+</label>
+
+<input
+    type="text"
+    id="foodName"
+    placeholder="Search food (Rice, Chicken, Apple...)"
+    autocomplete="off"
+>
 
     <div id="foodSuggestions">
 
@@ -112,14 +116,26 @@
 </div>
 
 
+<label for="quantity" class="input-label">
+    Weight (grams)
+</label>
 
-            <input
-                type="number"
-                id="quantity"
-                placeholder="Quantity"
-            >
+<input
+    type="number"
+    id="quantity"
+    placeholder="e.g. 150"
+    min="1"
+>
 
-            <select id="mealType">
+<small class="input-hint">
+    Example: Rice 150g, Chicken 200g, Apple 100g
+</small>
+
+            <label class="input-label">
+    Meal Type
+</label>
+
+<select id="mealType">
 
                 <option value="Breakfast">
                     Breakfast
@@ -140,8 +156,8 @@
             </select>
 
             <button id="addFoodBtn">
-                Add Food
-            </button>
+    🍽 Add Food
+</button>
 
         </div>
 
