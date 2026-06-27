@@ -15,12 +15,14 @@ exports.addFood = async (req, res) => {
             quantity,
             mealType
         } = req.body;
+        console.log(req.body);
 
         const food = foods.find(
             item =>
                 item.name.toLowerCase() ===
                 foodName.toLowerCase()
         );
+        console.log(food);
 
         if (!food) {
 
@@ -30,17 +32,25 @@ exports.addFood = async (req, res) => {
 
         }
 
-        const calories =
-            food.calories * quantity;
+       const factor = Number(quantity) / 100;
 
-        const protein =
-            food.protein * quantity;
+const calories = 999;
+const protein = 999;
+const carbs = 999;
+const fats = 999;
 
-        const carbs =
-            food.carbs * quantity;
+console.log({
+    quantity,
+    factor,
+    caloriesPer100g: food.calories,
+    calories,
+    protein,
+    carbs,
+    fats
+});
 
-        const fats =
-            food.fats * quantity;
+
+
 
         const foodLog =
             await FoodLog.create({
