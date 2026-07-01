@@ -10,7 +10,7 @@ function createLoader() {
     <div class="loader-box">
 
         <img
-            src="images/logo.png"
+            src="images/logo.jpeg"
             class="loader-logo"
             alt="OneDesk Logo">
 

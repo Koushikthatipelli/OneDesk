@@ -51,7 +51,7 @@ async function loadTaskCount() {
 
         const response =
             (
-              (`${API_URL}/todos`),
+              (`${BASE_URL}/todos`),
                 {
                     headers: {
                         Authorization:

@@ -1,2 +1,1 @@
-const API_URL =
-    "https://onedesk-j81w.onrender.com/api";
+window.BASE_URL = "http://localhost:5000";

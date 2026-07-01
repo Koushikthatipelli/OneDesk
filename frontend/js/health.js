@@ -1,6 +1,107 @@
 console.log("Health JS Version 2");
 let waterChart;
 let calorieChart;
+const SEARCH_API =
+"http://localhost:5000/api/health/search";
+
+const suggestions =
+document.getElementById(
+"foodSuggestions"
+);
+// ===========================
+// Food Search Suggestions
+// ===========================
+
+document.getElementById("foodSearch")
+.addEventListener("input", async function () {
+
+    const query = this.value.trim();
+
+    if (query.length < 2) {
+
+        suggestions.style.display = "none";
+        suggestions.innerHTML = "";
+
+        return;
+
+    }
+
+    try {
+
+        const response = await fetch(
+
+            SEARCH_API +
+
+            "?query=" +
+
+            encodeURIComponent(query),
+
+            {
+
+                headers
+
+            }
+
+        );
+
+        const foods = await response.json();
+
+        suggestions.innerHTML = "";
+
+        if (foods.length === 0) {
+
+            suggestions.style.display = "none";
+
+            return;
+
+        }
+
+        foods.forEach(food => {
+
+            suggestions.innerHTML += `
+
+            <div class="food-item"
+
+            onclick="selectFood('${food.name}')">
+
+                <strong>${food.name}</strong>
+
+                <br>
+
+                <small>
+
+                ${food.calories} kcal |
+
+                ${food.protein} g Protein
+
+                </small>
+
+            </div>
+
+            `;
+
+        });
+
+        suggestions.style.display = "block";
+
+    }
+
+    catch (error) {
+
+        console.log(error);
+
+    }
+
+});
+function selectFood(name){
+
+    document.getElementById("foodSearch").value = name;
+
+    suggestions.innerHTML = "";
+
+    suggestions.style.display = "none";
+
+}
 
 
 const token =
@@ -203,7 +304,7 @@ async function loadHealth() {
 
      const foodResponse =
 await fetch(
-    `${API_URL}/health/food`,
+    `${BASE_URL}/health/food`,
     {
         headers: {
             Authorization: `Bearer ${token}`
@@ -282,7 +383,7 @@ ${food.quantity}
 
         const waterResponse =
           await fetch(
-    `${API_URL}/health/water`,
+    `${BASE_URL}/health/water`,
                 {
                     headers:{
                         Authorization:
@@ -380,7 +481,7 @@ addFoodBtn.addEventListener(
             }
             showLoader("Adding Food...");
             await fetch(
-         `${API_URL}/health/food`,
+         `${BASE_URL}/health/food`,
                 {
                     method:"POST",
 
@@ -438,7 +539,7 @@ async function deleteFood(id) {
         showLoader("Deleting Food...");
 
         await fetch(
-            `${API_URL}/health/food/${id}`,
+            `${BASE_URL}/health/food/${id}`,
             {
                 method: "DELETE",
 
@@ -483,7 +584,7 @@ document
                 showLoader("Updating Water...");
 
             await fetch(
-    `${API_URL}/health/water`,
+    `${BASE_URL}/health/water`,
                 {
                     method:"POST",
 
@@ -576,7 +677,7 @@ async function deleteWater(id) {
 
         await fetch(
 
-           `${API_URL}/health/water/${id}`,
+           `${BASE_URL}/health/water/${id}`,
 
             {
 
@@ -613,7 +714,7 @@ async function loadAnalytics() {
     try {
 const response =
 await fetch(
-    `${API_URL}/health/analytics`,
+    `${BASE_URL}/health/analytics`,
                 {
                     headers:{
                         Authorization:

@@ -4,17 +4,15 @@ loginForm.addEventListener("submit", async function (e) {
 
     e.preventDefault();
 
-    const email =
-        document.querySelector('input[type="email"]').value;
+  const email =
+  document.getElementById("email").value;
 
-    const password =
-        document.querySelector('input[type="password"]').value;
-
+  const password =
+  document.getElementById("password").value;
     try {
         showLoader("Signing In...");
-
-        const response = await fetch(
-            `${API_URL}/auth/login`,
+const response = await fetch(
+    `${BASE_URL}/api/auth/login`,
             {
                 method: "POST",
                 headers: {
@@ -51,7 +49,12 @@ hideLoader();
 
 showSuccess("Login Successful");
 
-window.location.href = "home.html";
+setTimeout(() => {
+
+    window.location.href = "../v3/index.html";
+
+
+}, 1000);
     }
 
     catch(error){
@@ -65,3 +68,30 @@ window.location.href = "home.html";
 }
 
 });
+const togglePassword =
+document.getElementById("togglePassword");
+
+const password =
+document.getElementById("password");
+
+if(togglePassword){
+
+togglePassword.onclick=()=>{
+
+if(password.type==="password"){
+
+password.type="text";
+
+togglePassword.className="ti ti-eye-off eye-toggle";
+
+}else{
+
+password.type="password";
+
+togglePassword.className="ti ti-eye eye-toggle";
+
+}
+
+};
+
+}

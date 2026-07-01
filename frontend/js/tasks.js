@@ -14,7 +14,7 @@ async function loadTasks() {
     try {
 
         const response = await fetch(
-    `${API_URL}/todos`,
+    `${BASE_URL}/todos`,
             {
                 headers: {
                     Authorization: `Bearer ${token}`
@@ -118,7 +118,7 @@ async () => {
         }
 
         await fetch(
-            `${API_URL}/todos`,
+            `${BASE_URL}/todos`,
             {
                 method: "POST",
 
@@ -155,7 +155,7 @@ async function toggleTask(id, completed) {
         showLoader("Updating Task...");
 
         await fetch(
-    `${API_URL}/todos/${id}`,
+    `${BASE_URL}/todos/${id}`,
     {
         method: "PUT",
 
@@ -170,7 +170,7 @@ async function toggleTask(id, completed) {
     }
 );
         hideLoader();
-        showSuccess("Task Deleted Successfully");
+        showSuccess("Task Updated Successfully");
         loadTasks();
 
     } catch (error) {
@@ -188,7 +188,7 @@ async function deleteTask(id) {
     try {
         showLoader("Deleting Task...");
 await fetch(
-    `${API_URL}/todos/${id}`,
+    `${BASE_URL}/todos/${id}`,
     {
         method: "DELETE",
         headers: {

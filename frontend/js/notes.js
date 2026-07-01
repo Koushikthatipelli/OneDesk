@@ -56,7 +56,7 @@ async function loadNotes() {
 
         const response =
                   await fetch(
-    `${API_URL}/notes`,
+    `${BASE_URL}/notes`,
                 {
                     headers: {
                         Authorization:
@@ -169,7 +169,7 @@ async () => {
         }
          showLoader("Saving Note...");
         await fetch(
-           `${API_URL}/notes`,
+           `${BASE_URL}/notes`,
             {
                 method: "POST",
 
@@ -213,7 +213,7 @@ async function deleteNote(id) {
         showLoader("Deleting Note...");
 
       await fetch(
-    `${API_URL}/notes/${id}`,
+    `${BASE_URL}/notes/${id}`,
     {
         method: "DELETE",
         headers: {

@@ -32,8 +32,7 @@ const password =
 
             const response =
 
-                await fetch(
-                    `${API_URL}/auth/register`,
+                await fetch(`${BASE_URL}/api/auth/register`,  
                     {
                         method: "POST",
 
@@ -58,11 +57,13 @@ const password =
 
             if (!response.ok) {
 
-               showError(data.message);
+    hideLoader();
 
-                return;
+    showError(data.message);
 
-            }
+    return;
+
+}
 
             showSuccess("Account Created Successfully");
            hideLoader();
@@ -86,3 +87,50 @@ const password =
 
     }
 );
+const togglePassword =
+document.getElementById("togglePassword");
+
+const toggleConfirmPassword =
+document.getElementById("toggleConfirmPassword");
+
+const password =
+document.getElementById("password");
+
+const confirmPassword =
+document.getElementById("confirmPassword");
+
+if(togglePassword){
+
+togglePassword.onclick=()=>{
+
+password.type=
+password.type==="password"
+? "text"
+: "password";
+
+togglePassword.className=
+password.type==="password"
+? "ti ti-eye eye-toggle"
+: "ti ti-eye-off eye-toggle";
+
+};
+
+}
+
+if(toggleConfirmPassword){
+
+toggleConfirmPassword.onclick=()=>{
+
+confirmPassword.type=
+confirmPassword.type==="password"
+? "text"
+: "password";
+
+toggleConfirmPassword.className=
+confirmPassword.type==="password"
+? "ti ti-eye eye-toggle"
+: "ti ti-eye-off eye-toggle";
+
+};
+
+}
