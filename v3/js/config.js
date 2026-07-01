@@ -1,1 +1,1 @@
-const BASE_URL = "https://onedesk-j81w.onrender.com";
+window.BASE_URL = "https://onedesk-j81w.onrender.com";
