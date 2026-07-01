@@ -7,9 +7,16 @@ exports.createNote = async (req, res) => {
 
         const note =
             await Note.create({
-                user: req.user.id,
-                content: req.body.content
-            });
+
+    user:req.user.id,
+
+    title:req.body.title,
+
+    category:req.body.category,
+
+    content:req.body.content
+
+});
 
         res.status(201).json(note);
 
@@ -77,4 +84,58 @@ exports.deleteNote = async (req, res) => {
     }
 
 };
+exports.updateNote = async (req,res)=>{
 
+    try{
+
+        const note=
+
+        await Note.findById(req.params.id);
+
+        if(!note){
+
+            return res.status(404).json({
+
+                message:"Note not found"
+
+            });
+
+        }
+
+        note.title=
+
+        req.body.title||
+
+        note.title;
+
+        note.category=
+
+        req.body.category||
+
+        note.category;
+
+        note.content=
+
+        req.body.content||
+
+        note.content;
+
+        const updated=
+
+        await note.save();
+
+        res.status(200).json(updated);
+
+    }
+
+    catch(error){
+
+        res.status(500).json({
+
+            message:error.message
+
+        });
+
+    }
+
+};

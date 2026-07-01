@@ -1,0 +1,90 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Profile | OneDesk V3</title>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+<link rel="stylesheet" href="css/theme.css">
+<link rel="stylesheet" href="css/layout.css">
+<link rel="stylesheet" href="css/navbar.css">
+<link rel="stylesheet" href="css/components.css">
+<link rel="stylesheet" href="css/profile.css">
+</head>
+<body>
+
+<header id="navbar"></header>
+
+<main class="page">
+<div class="container">
+
+<section class="hero">
+<div>
+<h1>Profile</h1>
+<p class="hero-info">Manage your OneDesk account and preferences.</p>
+</div>
+<button class="action-btn" id="editProfileBtn">
+<i class="ti ti-edit"></i> Edit Profile
+</button>
+</section>
+
+<section class="profile-layout">
+
+<div class="profile-card">
+<div class="avatar">
+<i class="ti ti-user"></i>
+</div>
+
+<h2 id="userName">Koushik</h2>
+<p id="userEmail">koushik@example.com</p>
+
+<div class="profile-stats">
+<div><strong>28</strong><span>Tasks</span></div>
+<div><strong>16</strong><span>Notes</span></div>
+<div><strong>7</strong><span>Streak</span></div>
+</div>
+</div>
+
+<div class="details-card">
+
+<h2>Personal Information</h2>
+
+<div class="field">
+<label>Full Name</label>
+<input id="fullName" value="Koushik">
+</div>
+
+<div class="field">
+<label>Email</label>
+<input id="email" value="koushik@example.com">
+</div>
+
+<div class="field">
+<label>Goal</label>
+<select id="goal">
+<option>Stay Productive</option>
+<option>Weight Loss</option>
+<option>Muscle Gain</option>
+<option>Study Focus</option>
+</select>
+</div>
+
+<button class="action-btn" id="saveProfile">
+Save Changes
+</button>
+
+</div>
+
+</section>
+
+</div>
+</main>
+
+<script src="js/navbar.js"></script>
+<script src="js/profile.js"></script>
+
+</body>
+</html>
+

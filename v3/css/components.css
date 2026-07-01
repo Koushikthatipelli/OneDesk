@@ -1,0 +1,33 @@
+.icon{
+
+    width:52px;
+
+    height:52px;
+
+    border-radius:14px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    background:rgba(124,58,237,.12);
+
+    color:var(--primary);
+
+    font-size:24px;
+
+    transition:.3s;
+
+}
+
+.stat-card:hover .icon{
+
+    transform:rotate(-10deg) scale(1.15);
+
+    background:var(--primary);
+
+    color:white;
+
+}

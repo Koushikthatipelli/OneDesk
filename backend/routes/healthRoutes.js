@@ -13,7 +13,9 @@ const {
     getWater,
     deleteFood,
     deleteWater,
-    getAnalytics
+    getAnalytics,
+    searchFoods
+
 } = require(
     "../controllers/healthController"
 
@@ -37,6 +39,11 @@ router.delete(
     "/food/:id",
     auth,
     deleteFood
+);
+router.get(
+    "/search",
+    auth,
+    searchFoods
 );
 router.get(
     "/analytics",

@@ -1,82 +1,211 @@
 const Todo = require("../models/Todo");
 
-// Create Todo
-exports.createTodo = async (req, res) => {
-    try {
-        const todo = await Todo.create({
-            user: req.user.id,
-            title: req.body.title
-        });
+// ============================
+// Get All Tasks
+// ============================
 
-        res.status(201).json(todo);
-
-    } catch (error) {
-        res.status(500).json({ message: error.message });
-    }
-};
-
-// Get All Todos
 exports.getTodos = async (req, res) => {
+
     try {
+
         const todos = await Todo.find({
+
             user: req.user.id
+
+        }).sort({
+
+            createdAt: -1
+
         });
 
-        res.status(200).json(todos);
+        res.status(200).json({
 
-    } catch (error) {
-        res.status(500).json({ message: error.message });
+            success: true,
+
+            todos
+
+        });
+
     }
+
+    catch (error) {
+
+        res.status(500).json({
+
+            success: false,
+
+            message: error.message
+
+        });
+
+    }
+
 };
 
-// Update Todo
+// ============================
+// Add Task
+// ============================
+
+exports.createTodo = async (req, res) => {
+
+    try {
+
+        const {
+
+            title,
+
+            priority,
+
+            dueDate
+
+        } = req.body;
+
+        const todo = await Todo.create({
+
+            user: req.user.id,
+
+            title,
+
+            priority,
+
+            dueDate
+
+        });
+
+        res.status(201).json({
+
+            success: true,
+
+            message: "Task created successfully",
+
+            todo
+
+        });
+
+    }
+
+    catch (error) {
+
+        res.status(500).json({
+
+            success: false,
+
+            message: error.message
+
+        });
+
+    }
+
+};
+
+// ============================
+// Update Task
+// ============================
+
 exports.updateTodo = async (req, res) => {
+
     try {
 
-        const todo = await Todo.findById(req.params.id);
+        const todo = await Todo.findOne({
+
+            _id: req.params.id,
+
+            user: req.user.id
+
+        });
 
         if (!todo) {
+
             return res.status(404).json({
-                message: "Todo not found"
+
+                success: false,
+
+                message: "Task not found"
+
             });
+
         }
 
-        todo.title =
-            req.body.title || todo.title;
+        Object.assign(todo, req.body);
 
-        if (req.body.completed !== undefined) {
-            todo.completed =
-                req.body.completed;
-        }
+        await todo.save();
 
-        const updatedTodo = await todo.save();
+        res.status(200).json({
 
-        res.status(200).json(updatedTodo);
+            success: true,
 
-    } catch (error) {
-        res.status(500).json({ message: error.message });
+            message: "Task updated successfully",
+
+            todo
+
+        });
+
     }
+
+    catch (error) {
+
+        res.status(500).json({
+
+            success: false,
+
+            message: error.message
+
+        });
+
+    }
+
 };
 
-// Delete Todo
+// ============================
+// Delete Task
+// ============================
+
 exports.deleteTodo = async (req, res) => {
+
     try {
 
-        const todo = await Todo.findById(req.params.id);
+        const todo = await Todo.findOne({
+
+            _id: req.params.id,
+
+            user: req.user.id
+
+        });
 
         if (!todo) {
+
             return res.status(404).json({
-                message: "Todo not found"
+
+                success: false,
+
+                message: "Task not found"
+
             });
+
         }
 
         await todo.deleteOne();
 
         res.status(200).json({
-            message: "Todo deleted successfully"
+
+            success: true,
+
+            message: "Task deleted successfully"
+
         });
 
-    } catch (error) {
-        res.status(500).json({ message: error.message });
     }
+
+    catch (error) {
+
+        res.status(500).json({
+
+            success: false,
+
+            message: error.message
+
+        });
+
+    }
+
 };

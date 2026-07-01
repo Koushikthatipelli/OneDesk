@@ -539,4 +539,648 @@
   "carbs": 7,
   "fats": 2
 }
+,
+{
+  "name": "Medu Vada",
+  "serving": "1 Piece",
+  "calories": 97,
+  "protein": 2.4,
+  "carbs": 8,
+  "fats": 6
+},
+{
+  "name": "Onion Dosa",
+  "serving": "1 Piece",
+  "calories": 180,
+  "protein": 4,
+  "carbs": 30,
+  "fats": 4
+},
+{
+  "name": "Mysore Masala Dosa",
+  "serving": "1 Piece",
+  "calories": 290,
+  "protein": 7,
+  "carbs": 40,
+  "fats": 10
+},
+{
+  "name": "Set Dosa",
+  "serving": "2 Pieces",
+  "calories": 220,
+  "protein": 6,
+  "carbs": 38,
+  "fats": 5
+},
+{
+  "name": "Appam",
+  "serving": "1 Piece",
+  "calories": 120,
+  "protein": 2,
+  "carbs": 25,
+  "fats": 1
+},
+{
+  "name": "Puttu",
+  "serving": "100g",
+  "calories": 170,
+  "protein": 4,
+  "carbs": 35,
+  "fats": 1
+},
+{
+  "name": "Poori",
+  "serving": "1 Piece",
+  "calories": 101,
+  "protein": 2,
+  "carbs": 12,
+  "fats": 5
+},
+{
+  "name": "Poori Masala",
+  "serving": "1 Plate",
+  "calories": 330,
+  "protein": 8,
+  "carbs": 45,
+  "fats": 12
+},
+{
+  "name": "Bread Omelette",
+  "serving": "1 Serving",
+  "calories": 240,
+  "protein": 12,
+  "carbs": 18,
+  "fats": 12
+},
+{
+  "name": "Bread Butter",
+  "serving": "2 Slices",
+  "calories": 210,
+  "protein": 5,
+  "carbs": 24,
+  "fats": 10
+},
+{
+  "name": "Jeera Rice",
+  "serving": "100g",
+  "calories": 150,
+  "protein": 3,
+  "carbs": 29,
+  "fats": 2
+},
+{
+  "name": "Coconut Rice",
+  "serving": "100g",
+  "calories": 190,
+  "protein": 3,
+  "carbs": 30,
+  "fats": 7
+},
+{
+  "name": "Ghee Rice",
+  "serving": "100g",
+  "calories": 180,
+  "protein": 3,
+  "carbs": 28,
+  "fats": 6
+},
+{
+  "name": "Egg Fried Rice",
+  "serving": "100g",
+  "calories": 185,
+  "protein": 6,
+  "carbs": 25,
+  "fats": 7
+},
+{
+  "name": "Paneer Fried Rice",
+  "serving": "100g",
+  "calories": 195,
+  "protein": 7,
+  "carbs": 24,
+  "fats": 8
+},
+{
+  "name": "Egg Biryani",
+  "serving": "100g",
+  "calories": 215,
+  "protein": 10,
+  "carbs": 24,
+  "fats": 8
+},
+{
+  "name": "Mushroom Biryani",
+  "serving": "100g",
+  "calories": 175,
+  "protein": 5,
+  "carbs": 28,
+  "fats": 5
+},
+{
+  "name": "Schezwan Fried Rice",
+  "serving": "100g",
+  "calories": 205,
+  "protein": 5,
+  "carbs": 31,
+  "fats": 7
+},
+{
+  "name": "Mint Rice",
+  "serving": "100g",
+  "calories": 165,
+  "protein": 3,
+  "carbs": 28,
+  "fats": 4
+},
+{
+  "name": "Tamarind Rice",
+  "serving": "100g",
+  "calories": 185,
+  "protein": 3,
+  "carbs": 32,
+  "fats": 5
+}
+,
+{
+  "name": "Butter Chicken",
+  "serving": "100g",
+  "calories": 240,
+  "protein": 21,
+  "carbs": 5,
+  "fats": 15
+},
+{
+  "name": "Chicken 65",
+  "serving": "100g",
+  "calories": 280,
+  "protein": 24,
+  "carbs": 8,
+  "fats": 17
+},
+{
+  "name": "Chilli Chicken",
+  "serving": "100g",
+  "calories": 210,
+  "protein": 20,
+  "carbs": 8,
+  "fats": 11
+},
+{
+  "name": "Kadai Chicken",
+  "serving": "100g",
+  "calories": 215,
+  "protein": 23,
+  "carbs": 5,
+  "fats": 11
+},
+{
+  "name": "Chicken Wings",
+  "serving": "100g",
+  "calories": 203,
+  "protein": 30,
+  "carbs": 0,
+  "fats": 8
+},
+{
+  "name": "Chicken Lollipop",
+  "serving": "100g",
+  "calories": 260,
+  "protein": 22,
+  "carbs": 10,
+  "fats": 15
+},
+{
+  "name": "Palak Paneer",
+  "serving": "100g",
+  "calories": 180,
+  "protein": 11,
+  "carbs": 7,
+  "fats": 11
+},
+{
+  "name": "Paneer Butter Masala",
+  "serving": "100g",
+  "calories": 265,
+  "protein": 9,
+  "carbs": 8,
+  "fats": 21
+},
+{
+  "name": "Kadai Paneer",
+  "serving": "100g",
+  "calories": 220,
+  "protein": 11,
+  "carbs": 8,
+  "fats": 16
+},
+{
+  "name": "Matar Paneer",
+  "serving": "100g",
+  "calories": 170,
+  "protein": 9,
+  "carbs": 10,
+  "fats": 10
+},
+{
+  "name": "Malai Kofta",
+  "serving": "100g",
+  "calories": 250,
+  "protein": 6,
+  "carbs": 18,
+  "fats": 17
+},
+{
+  "name": "Egg Curry",
+  "serving": "100g",
+  "calories": 155,
+  "protein": 10,
+  "carbs": 4,
+  "fats": 11
+},
+{
+  "name": "Boiled Chicken",
+  "serving": "100g",
+  "calories": 165,
+  "protein": 31,
+  "carbs": 0,
+  "fats": 3.6
+},
+{
+  "name": "Boiled Fish",
+  "serving": "100g",
+  "calories": 120,
+  "protein": 23,
+  "carbs": 0,
+  "fats": 2
+},
+{
+  "name": "Prawn Curry",
+  "serving": "100g",
+  "calories": 140,
+  "protein": 20,
+  "carbs": 3,
+  "fats": 5
+},
+{
+  "name": "Shrimp Fry",
+  "serving": "100g",
+  "calories": 180,
+  "protein": 22,
+  "carbs": 5,
+  "fats": 8
+},
+{
+  "name": "Mutton Keema",
+  "serving": "100g",
+  "calories": 250,
+  "protein": 18,
+  "carbs": 5,
+  "fats": 18
+},
+{
+  "name": "Chicken Keema",
+  "serving": "100g",
+  "calories": 190,
+  "protein": 23,
+  "carbs": 3,
+  "fats": 9
+},
+{
+  "name": "Soy Chunks",
+  "serving": "100g",
+  "calories": 345,
+  "protein": 52,
+  "carbs": 33,
+  "fats": 0.5
+},
+{
+  "name": "Green Gram",
+  "serving": "100g",
+  "calories": 105,
+  "protein": 7,
+  "carbs": 19,
+  "fats": 0.4
+}
+,
+{
+  "name": "Potato",
+  "serving": "100g",
+  "calories": 77,
+  "protein": 2,
+  "carbs": 17,
+  "fats": 0.1
+},
+{
+  "name": "Sweet Potato",
+  "serving": "100g",
+  "calories": 86,
+  "protein": 1.6,
+  "carbs": 20,
+  "fats": 0.1
+},
+{
+  "name": "Tomato",
+  "serving": "100g",
+  "calories": 18,
+  "protein": 0.9,
+  "carbs": 3.9,
+  "fats": 0.2
+},
+{
+  "name": "Onion",
+  "serving": "100g",
+  "calories": 40,
+  "protein": 1.1,
+  "carbs": 9.3,
+  "fats": 0.1
+},
+{
+  "name": "Carrot",
+  "serving": "100g",
+  "calories": 41,
+  "protein": 0.9,
+  "carbs": 10,
+  "fats": 0.2
+},
+{
+  "name": "Beetroot",
+  "serving": "100g",
+  "calories": 43,
+  "protein": 1.6,
+  "carbs": 10,
+  "fats": 0.2
+},
+{
+  "name": "Cucumber",
+  "serving": "100g",
+  "calories": 15,
+  "protein": 0.7,
+  "carbs": 3.6,
+  "fats": 0.1
+},
+{
+  "name": "Spinach",
+  "serving": "100g",
+  "calories": 23,
+  "protein": 2.9,
+  "carbs": 3.6,
+  "fats": 0.4
+},
+{
+  "name": "Broccoli",
+  "serving": "100g",
+  "calories": 34,
+  "protein": 2.8,
+  "carbs": 7,
+  "fats": 0.4
+},
+{
+  "name": "Cauliflower",
+  "serving": "100g",
+  "calories": 25,
+  "protein": 2,
+  "carbs": 5,
+  "fats": 0.3
+},
+{
+  "name": "Cabbage",
+  "serving": "100g",
+  "calories": 25,
+  "protein": 1.3,
+  "carbs": 6,
+  "fats": 0.1
+},
+{
+  "name": "Capsicum",
+  "serving": "100g",
+  "calories": 31,
+  "protein": 1,
+  "carbs": 6,
+  "fats": 0.3
+},
+{
+  "name": "Green Peas",
+  "serving": "100g",
+  "calories": 81,
+  "protein": 5.4,
+  "carbs": 14,
+  "fats": 0.4
+},
+{
+  "name": "Corn",
+  "serving": "100g",
+  "calories": 96,
+  "protein": 3.4,
+  "carbs": 21,
+  "fats": 1.5
+},
+{
+  "name": "Pumpkin",
+  "serving": "100g",
+  "calories": 26,
+  "protein": 1,
+  "carbs": 7,
+  "fats": 0.1
+},
+{
+  "name": "Bottle Gourd",
+  "serving": "100g",
+  "calories": 15,
+  "protein": 0.6,
+  "carbs": 3.7,
+  "fats": 0.1
+},
+{
+  "name": "Bitter Gourd",
+  "serving": "100g",
+  "calories": 17,
+  "protein": 1,
+  "carbs": 3.7,
+  "fats": 0.2
+},
+{
+  "name": "Ladies Finger",
+  "serving": "100g",
+  "calories": 33,
+  "protein": 1.9,
+  "carbs": 7.5,
+  "fats": 0.2
+},
+{
+  "name": "Brinjal",
+  "serving": "100g",
+  "calories": 25,
+  "protein": 1,
+  "carbs": 6,
+  "fats": 0.2
+},
+{
+  "name": "Beans",
+  "serving": "100g",
+  "calories": 31,
+  "protein": 1.8,
+  "carbs": 7,
+  "fats": 0.1
+}
+,
+{
+  "name": "Watermelon",
+  "serving": "100g",
+  "calories": 30,
+  "protein": 0.6,
+  "carbs": 8,
+  "fats": 0.2
+},
+{
+  "name": "Papaya",
+  "serving": "100g",
+  "calories": 43,
+  "protein": 0.5,
+  "carbs": 11,
+  "fats": 0.3
+},
+{
+  "name": "Pineapple",
+  "serving": "100g",
+  "calories": 50,
+  "protein": 0.5,
+  "carbs": 13,
+  "fats": 0.1
+},
+{
+  "name": "Guava",
+  "serving": "100g",
+  "calories": 68,
+  "protein": 2.6,
+  "carbs": 14,
+  "fats": 1
+},
+{
+  "name": "Kiwi",
+  "serving": "100g",
+  "calories": 61,
+  "protein": 1.1,
+  "carbs": 15,
+  "fats": 0.5
+},
+{
+  "name": "Grapes",
+  "serving": "100g",
+  "calories": 69,
+  "protein": 0.7,
+  "carbs": 18,
+  "fats": 0.2
+},
+{
+  "name": "Pear",
+  "serving": "100g",
+  "calories": 57,
+  "protein": 0.4,
+  "carbs": 15,
+  "fats": 0.1
+},
+{
+  "name": "Sapota",
+  "serving": "100g",
+  "calories": 83,
+  "protein": 0.4,
+  "carbs": 20,
+  "fats": 1.1
+},
+{
+  "name": "Strawberry",
+  "serving": "100g",
+  "calories": 32,
+  "protein": 0.7,
+  "carbs": 8,
+  "fats": 0.3
+},
+{
+  "name": "Blueberry",
+  "serving": "100g",
+  "calories": 57,
+  "protein": 0.7,
+  "carbs": 14,
+  "fats": 0.3
+},
+{
+  "name": "Dragon Fruit",
+  "serving": "100g",
+  "calories": 60,
+  "protein": 1.2,
+  "carbs": 13,
+  "fats": 0.1
+},
+{
+  "name": "Muskmelon",
+  "serving": "100g",
+  "calories": 34,
+  "protein": 0.8,
+  "carbs": 8,
+  "fats": 0.2
+},
+{
+  "name": "Lychee",
+  "serving": "100g",
+  "calories": 66,
+  "protein": 0.8,
+  "carbs": 17,
+  "fats": 0.4
+},
+{
+  "name": "Peach",
+  "serving": "100g",
+  "calories": 39,
+  "protein": 0.9,
+  "carbs": 10,
+  "fats": 0.3
+},
+{
+  "name": "Cherry",
+  "serving": "100g",
+  "calories": 63,
+  "protein": 1.1,
+  "carbs": 16,
+  "fats": 0.2
+},
+{
+  "name": "Avocado",
+  "serving": "100g",
+  "calories": 160,
+  "protein": 2,
+  "carbs": 9,
+  "fats": 15
+},
+{
+  "name": "Dates",
+  "serving": "100g",
+  "calories": 282,
+  "protein": 2.5,
+  "carbs": 75,
+  "fats": 0.4
+},
+{
+  "name": "Walnuts",
+  "serving": "100g",
+  "calories": 654,
+  "protein": 15,
+  "carbs": 14,
+  "fats": 65
+},
+{
+  "name": "Pistachios",
+  "serving": "100g",
+  "calories": 562,
+  "protein": 20,
+  "carbs": 28,
+  "fats": 45
+},
+{
+  "name": "Chia Seeds",
+  "serving": "100g",
+  "calories": 486,
+  "protein": 17,
+  "carbs": 42,
+  "fats": 31
+}
 ]

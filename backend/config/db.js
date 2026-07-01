@@ -1,27 +1,33 @@
 const mongoose = require("mongoose");
 
-console.log("db.js loaded");
-
 const connectDB = async () => {
-  try {
 
-    console.log("Trying to connect...");
+    try {
 
-    await mongoose.connect(process.env.MONGO_URI);
+        console.log("Trying to connect...");
 
-    mongoose.connection.once("open", () => {
-      console.log("MongoDB Connection OPEN ✅");
-      console.log(
-        "Ready State:",
-        mongoose.connection.readyState
-      );
-    });
+        const conn = await mongoose.connect(
+            process.env.MONGO_URI,
+            {
+                serverSelectionTimeoutMS: 5000
+            }
+        );
 
-  } catch (error) {
+        console.log(
+            `✅ MongoDB Connected: ${conn.connection.host}`
+        );
 
-    console.error(error);
+    }
 
-  }
+    catch (error) {
+
+        console.error("❌ MongoDB Connection Failed");
+        console.error(error.message);
+
+        process.exit(1);
+
+    }
+
 };
 
 module.exports = connectDB;

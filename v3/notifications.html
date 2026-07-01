@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>OneDesk • Notifications</title>
+
+    <link rel="icon" href="images/logo.jpeg">
+
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+
+    <link rel="stylesheet" href="css/theme.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/navbar.css">
+    <link rel="stylesheet" href="css/components.css">
+
+    <style>
+
+*{
+box-sizing:border-box;
+}
+
+.notification-container{
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+min-height:calc(100vh - 90px);
+
+padding:40px;
+
+}
+
+.notification-card{
+
+width:100%;
+
+max-width:650px;
+
+background:#ffffff;
+
+border-radius:24px;
+
+padding:50px;
+
+text-align:center;
+
+box-shadow:0 15px 35px rgba(0,0,0,.08);
+
+}
+
+.notification-icon{
+
+width:110px;
+
+height:110px;
+
+margin:auto;
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+border-radius:50%;
+
+background:#eef2ff;
+
+color:#6366f1;
+
+font-size:55px;
+
+margin-bottom:25px;
+
+}
+
+.notification-card h1{
+
+font-size:38px;
+
+color:#111827;
+
+margin-bottom:15px;
+
+}
+
+.notification-card h2{
+
+font-size:24px;
+
+color:#6366f1;
+
+margin-bottom:20px;
+
+}
+
+.notification-card p{
+
+color:#6b7280;
+
+font-size:17px;
+
+line-height:1.8;
+
+margin-bottom:35px;
+
+}
+
+.status-box{
+
+background:#f8fafc;
+
+border:1px solid #e5e7eb;
+
+padding:20px;
+
+border-radius:16px;
+
+margin-bottom:35px;
+
+}
+
+.status-item{
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+gap:12px;
+
+font-size:17px;
+
+color:#374151;
+
+margin:12px 0;
+
+}
+
+.status-item i{
+
+font-size:22px;
+
+color:#10b981;
+
+}
+
+.coming-btn{
+
+display:inline-block;
+
+padding:15px 35px;
+
+background:linear-gradient(135deg,#6366f1,#8b5cf6);
+
+border-radius:14px;
+
+color:white;
+
+font-weight:600;
+
+text-decoration:none;
+
+cursor:default;
+
+}
+
+@media(max-width:768px){
+
+.notification-card{
+
+padding:35px 25px;
+
+}
+
+.notification-card h1{
+
+font-size:30px;
+
+}
+
+.notification-card h2{
+
+font-size:20px;
+
+}
+
+}
+
+    </style>
+
+</head>
+
+<body>
+
+<header id="navbar"></header>
+
+<main class="page">
+
+<div class="container">
+
+<div class="notification-container">
+
+<div class="notification-card">
+
+<div class="notification-icon">
+
+<i class="ti ti-bell-off"></i>
+
+</div>
+
+<h1>
+
+Notifications
+
+</h1>
+
+<h2>
+
+You're All Caught Up 🎉
+
+</h2>
+
+<p>
+
+No new notifications are available at the moment.
+We'll notify you when there are important updates,
+task reminders, or new features.
+
+</p>
+
+<div class="status-box">
+
+<div class="status-item">
+
+<i class="ti ti-circle-check"></i>
+
+Everything is up to date
+
+</div>
+
+<div class="status-item">
+
+<i class="ti ti-circle-check"></i>
+
+No pending reminders
+
+</div>
+
+<div class="status-item">
+
+<i class="ti ti-circle-check"></i>
+
+No new notifications
+
+</div>
+
+</div>
+
+<div class="coming-btn">
+
+Check Back Later
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</main>
+
+<script src="js/config.js"></script>
+<script src="js/navbar.js"></script>
+
+</body>
+
+</html>

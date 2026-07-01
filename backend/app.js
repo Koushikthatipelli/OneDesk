@@ -1,64 +1,105 @@
-
 require("dotenv").config();
-const noteRoutes =
-require("./routes/noteRoutes");
-
 
 const express = require("express");
 const cors = require("cors");
-
 
 const connectDB = require("./config/db");
 
 const authRoutes = require("./routes/authRoutes");
 const todoRoutes = require("./routes/todoRoutes");
+const noteRoutes = require("./routes/noteRoutes");
+const healthRoutes = require("./routes/healthRoutes");
 
 const app = express();
 
-// Middleware
-app.use(cors());
-app.use(express.json());
+// ==============================
+// Connect Database
+// ==============================
 
-// Connect MongoDB
-console.log("Calling connectDB...");
 connectDB();
 
-// Test Route
-app.get("/", (req, res) => {
-    res.send("OneDesk Backend Running 🚀");
-});
+// ==============================
+// Middlewares
+// ==============================
 
-// Auth Routes
+app.use(cors());
+
+app.use(express.json());
+
+app.use(express.urlencoded({ extended: true }));
+
+// ==============================
+// API Routes
+// ==============================
+
 app.use("/api/auth", authRoutes);
 
-// Todo Routes
 app.use("/api/todos", todoRoutes);
-app.use(
-    "/api/notes",
-    noteRoutes
-);
 
-// DB Status Route
-app.get("/test-db", (req, res) => {
+app.use("/api/notes", noteRoutes);
 
-    const mongoose = require("mongoose");
+app.use("/api/health", healthRoutes);
+
+// ==============================
+// Health Check
+// ==============================
+
+app.get("/", (req, res) => {
 
     res.json({
-        readyState: mongoose.connection.readyState
+
+        success: true,
+
+        message: "OneDesk Backend Running 🚀"
+
     });
 
 });
 
-// Server
+// ==============================
+// 404 Handler
+// ==============================
+
+app.use((req, res) => {
+
+    res.status(404).json({
+
+        success: false,
+
+        message: "Route Not Found"
+
+    });
+
+});
+
+// ==============================
+// Global Error Handler
+// ==============================
+
+app.use((err, req, res, next) => {
+
+    console.error(err.stack);
+
+    res.status(500).json({
+
+        success: false,
+
+        message: "Internal Server Error"
+
+    });
+
+});
+
+// ==============================
+// Start Server
+// ==============================
+
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
-});
-const healthRoutes =
-    require("./routes/healthRoutes");
 
-app.use(
-    "/api/health",
-    healthRoutes
-);
+    console.log(
+        `🚀 Server running on http://localhost:${PORT}`
+    );
+
+});

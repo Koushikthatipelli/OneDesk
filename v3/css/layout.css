@@ -1,0 +1,39 @@
+.container{
+
+    width:min(1450px,92%);
+
+    margin:auto;
+
+}
+
+.page{
+
+    padding-top:110px;
+
+    padding-bottom:40px;
+
+}
+
+.grid{
+
+    display:grid;
+
+    gap:25px;
+
+}
+
+.flex{
+
+    display:flex;
+
+}
+
+.center{
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+}

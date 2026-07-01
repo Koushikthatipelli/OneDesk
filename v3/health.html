@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Health | OneDesk V3</title>
+
+<link rel="stylesheet"
+href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+
+<link rel="stylesheet" href="css/theme.css">
+<link rel="stylesheet" href="css/layout.css">
+<link rel="stylesheet" href="css/navbar.css">
+<link rel="stylesheet" href="css/components.css">
+<link rel="stylesheet" href="css/health.css">
+
+</head>
+
+<body>
+
+<header id="navbar"></header>
+
+<main class="page">
+
+<div class="container">
+
+<!-- ========================= -->
+<!-- Hero -->
+<!-- ========================= -->
+
+<section class="hero">
+
+<div>
+
+<h1>Health Tracker</h1>
+
+<p class="hero-info">
+
+Track nutrition, water and daily goals.
+
+</p>
+
+</div>
+
+<button id="addFoodBtn" class="action-btn">
+
+<i class="ti ti-plus"></i>
+
+Add Food
+
+</button>
+
+</section>
+
+<!-- ========================= -->
+<!-- Statistics -->
+<!-- ========================= -->
+
+<section class="health-stats">
+
+<div class="health-card">
+
+<h3>Calories</h3>
+
+<h1 id="caloriesToday">0</h1>
+
+<p>Today's Intake</p>
+
+</div>
+
+<div class="health-card">
+
+<h3>Protein</h3>
+
+<h1 id="proteinToday">0 g</h1>
+
+<p>Daily Protein</p>
+
+</div>
+
+<div class="health-card">
+
+<h3>Water</h3>
+
+<h1 id="waterToday">0 L</h1>
+
+<p>Today's Water</p>
+
+</div>
+
+<div class="health-card">
+
+<h3>Meals</h3>
+
+<h1 id="mealCount">0</h1>
+
+<p>Logged Meals</p>
+
+</div>
+
+</section>
+
+<!-- ========================= -->
+<!-- Add Food -->
+<!-- ========================= -->
+
+<section
+id="foodForm"
+style="display:none;">
+
+<input
+
+id="foodSearch"
+
+type="text"
+
+placeholder="Search Food..."
+
+autocomplete="off">
+
+<div
+
+id="foodSuggestions"
+
+class="food-suggestions">
+
+</div>
+
+<div id="nutritionPreview"></div>
+
+<input
+
+id="foodQty"
+
+type="number"
+
+placeholder="Quantity (g)">
+
+<select id="mealType">
+
+<option>Breakfast</option>
+
+<option>Lunch</option>
+
+<option>Dinner</option>
+
+<option>Snack</option>
+
+</select>
+
+<button
+
+id="saveFood"
+
+class="action-btn">
+
+Save Food
+
+</button>
+
+</section>
+
+<!-- ========================= -->
+<!-- Food List -->
+<!-- ========================= -->
+
+<section class="food-list">
+
+<h2>Today's Food</h2>
+
+<div id="foodContainer"></div>
+
+</section>
+
+<!-- ========================= -->
+<!-- Water -->
+<!-- ========================= -->
+
+<section class="water-section">
+
+<h2>Water Tracker</h2>
+
+<div class="water-buttons">
+
+<button
+class="water-btn">
+
+250 ml
+
+</button>
+
+<button
+class="water-btn">
+
+500 ml
+
+</button>
+
+<button
+class="water-btn">
+
+750 ml
+
+</button>
+
+<button
+class="water-btn">
+
+1 L
+
+</button>
+
+</div>
+
+</section>
+
+</div>
+
+</main>
+
+<script src="js/navbar.js"></script>
+
+<script src="js/health.js"></script>
+
+</body>
+
+</html>

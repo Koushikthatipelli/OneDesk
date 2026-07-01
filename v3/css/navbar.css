@@ -1,0 +1,210 @@
+/* ===========================
+   OneDesk V3 Navbar
+=========================== */
+
+.navbar{
+
+    position:fixed;
+
+    top:18px;
+
+    left:50%;
+
+    transform:translateX(-50%);
+
+    width:min(1450px,92%);
+
+    height:72px;
+
+    background:rgba(22,27,47,.75);
+
+    backdrop-filter:blur(18px);
+
+    border:1px solid var(--border);
+
+    border-radius:22px;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:0 28px;
+
+    z-index:999;
+
+    box-shadow:var(--shadow);
+
+}
+
+.logo{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+}
+
+.logo img{
+
+    width:44px;
+
+    border-radius:12px;
+
+}
+
+.logo h2{
+
+    font-size:24px;
+
+    font-weight:700;
+
+}
+
+.nav-links{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+}
+
+.nav-links a{
+
+    padding:10px 18px;
+
+    border-radius:12px;
+
+    color:var(--text-secondary);
+
+    font-weight:500;
+
+    transition:var(--transition);
+
+}
+
+.nav-links a:hover{
+
+    background:rgba(124,58,237,.18);
+
+    color:white;
+
+}
+
+.nav-links .active{
+
+    background:var(--primary);
+
+    color:white;
+
+}
+
+.nav-right{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:18px;
+
+}
+
+.search{
+
+    width:240px;
+
+    height:44px;
+
+    border:none;
+
+    outline:none;
+
+    background:var(--surface-light);
+
+    border-radius:12px;
+
+    padding:0 16px;
+
+    color:white;
+
+}
+
+.icon-btn{
+
+    width:44px;
+
+    height:44px;
+
+    border-radius:12px;
+
+    background:var(--surface-light);
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    cursor:pointer;
+
+    transition:.25s;
+
+    font-size:20px;
+
+}
+
+.icon-btn:hover{
+
+    background:var(--primary);
+
+    transform:translateY(-2px);
+
+}
+
+.avatar{
+
+    width:44px;
+
+    height:44px;
+
+    border-radius:50%;
+
+    background:linear-gradient(
+        135deg,
+        #7C3AED,
+        #A855F7
+    );
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    font-weight:700;
+
+    cursor:pointer;
+
+}
+.icon-btn{
+
+cursor:pointer;
+
+transition:.3s;
+
+}
+
+.icon-btn:hover{
+
+background:#6366f1;
+
+color:white;
+
+transform:translateY(-2px);
+
+}

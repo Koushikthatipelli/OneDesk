@@ -1,0 +1,116 @@
+
+/* ==========================
+   OneDesk V3 Water
+========================== */
+
+.hero{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:30px;
+}
+
+.hero h1{
+font-size:42px;
+font-weight:800;
+}
+
+.hero-info{
+margin-top:10px;
+color:var(--text-secondary);
+}
+
+.water-dashboard{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:20px;
+margin-bottom:35px;
+}
+
+.water-card{
+background:var(--surface);
+border:1px solid var(--border);
+border-radius:20px;
+padding:24px;
+transition:.3s;
+}
+
+.water-card:hover{
+transform:translateY(-5px);
+border-color:var(--primary);
+}
+
+.water-card h3{
+color:var(--text-secondary);
+margin-bottom:12px;
+}
+
+.water-card h1{
+font-size:44px;
+font-weight:800;
+margin-bottom:10px;
+}
+
+.progress{
+height:14px;
+background:rgba(255,255,255,.08);
+border-radius:30px;
+overflow:hidden;
+margin:20px 0;
+}
+
+.progress-fill{
+width:0%;
+height:100%;
+background:linear-gradient(90deg,#06B6D4,#3B82F6);
+transition:.4s;
+}
+
+.quick-buttons{
+display:flex;
+flex-wrap:wrap;
+gap:12px;
+margin-top:15px;
+}
+
+.water-btn{
+padding:12px 18px;
+border:none;
+border-radius:12px;
+background:var(--surface-light);
+border:1px solid var(--border);
+color:var(--text);
+cursor:pointer;
+transition:.3s;
+}
+
+.water-btn:hover{
+background:var(--primary);
+color:#fff;
+}
+
+.history-section h2{
+margin-bottom:18px;
+}
+
+#waterHistory{
+display:grid;
+gap:15px;
+}
+
+.history-card{
+background:var(--surface);
+border:1px solid var(--border);
+border-radius:16px;
+padding:18px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+}
+
+@media(max-width:900px){
+.water-dashboard{
+grid-template-columns:1fr;
+}
+}
+

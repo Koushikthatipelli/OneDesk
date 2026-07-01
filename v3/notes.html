@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>Notes | OneDesk V3</title>
+
+<link
+rel="stylesheet"
+href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+
+<link rel="stylesheet" href="css/theme.css">
+<link rel="stylesheet" href="css/layout.css">
+<link rel="stylesheet" href="css/navbar.css">
+<link rel="stylesheet" href="css/components.css">
+<link rel="stylesheet" href="css/notes.css">
+
+</head>
+
+<body>
+
+<header id="navbar"></header>
+
+<main class="page">
+
+<div class="container">
+
+<!-- ================= HERO ================= -->
+
+<section class="hero">
+
+<div>
+
+<h1>Notes</h1>
+
+<p class="hero-info">
+
+Capture ideas, reminders and plans.
+
+</p>
+
+</div>
+
+<button
+id="newNoteBtn"
+class="action-btn">
+
+<i class="ti ti-plus"></i>
+
+New Note
+
+</button>
+
+</section>
+
+<!-- ================= TOOLBAR ================= -->
+
+<section class="notes-toolbar">
+
+<div class="search-box">
+
+<i class="ti ti-search"></i>
+
+<input
+id="searchNote"
+type="text"
+placeholder="Search notes...">
+
+</div>
+
+<select id="category">
+
+<option>All</option>
+<option>Work</option>
+<option>Personal</option>
+<option>Study</option>
+<option>Ideas</option>
+
+</select>
+
+</section>
+
+<!-- ================= NOTE EDITOR ================= -->
+
+<section
+id="noteEditor"
+class="note-editor"
+style="display:none;">
+
+<div class="editor-header">
+
+<h2>Create Note</h2>
+
+<button
+id="closeEditor"
+class="close-btn">
+
+<i class="ti ti-x"></i>
+
+</button>
+
+</div>
+
+<input
+id="noteTitle"
+type="text"
+placeholder="Note title">
+
+<select id="noteCategory">
+
+<option>Work</option>
+<option>Personal</option>
+<option>Study</option>
+<option>Ideas</option>
+
+</select>
+
+<textarea
+id="noteContent"
+placeholder="Write your note...">
+
+</textarea>
+
+<div class="editor-actions">
+
+<button
+id="cancelNote"
+class="cancel-btn">
+
+Cancel
+
+</button>
+
+<button
+id="saveNote"
+class="action-btn">
+
+<i class="ti ti-device-floppy"></i>
+
+Save Note
+
+</button>
+
+</div>
+
+</section>
+<!-- ================= NOTES GRID ================= -->
+
+<section class="notes-section">
+
+<div
+id="emptyNotes"
+class="empty-state"
+style="display:none;">
+
+<i class="ti ti-notes"></i>
+
+<h2>
+
+No Notes Found
+
+</h2>
+
+<p>
+
+Create your first note to get started.
+
+</p>
+
+</div>
+
+<div
+id="notesGrid"
+class="notes-grid">
+
+<!-- Notes will be rendered here -->
+
+</div>
+
+</section>
+
+</div>
+
+</main>
+
+<!-- ================= FOOTER SCRIPTS ================= -->
+
+<script src="js/navbar.js"></script>
+
+<script src="js/notes.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,71 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Water Tracker | OneDesk V3</title>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+<link rel="stylesheet" href="css/theme.css">
+<link rel="stylesheet" href="css/layout.css">
+<link rel="stylesheet" href="css/navbar.css">
+<link rel="stylesheet" href="css/components.css">
+<link rel="stylesheet" href="css/water.css">
+</head>
+<body>
+
+<header id="navbar"></header>
+
+<main class="page">
+<div class="container">
+
+<section class="hero">
+<div>
+<h1>Water Tracker</h1>
+<p class="hero-info">Stay hydrated and reach your daily goal.</p>
+</div>
+</section>
+
+<section class="water-dashboard">
+
+<div class="water-card">
+<h3>Today's Intake</h3>
+<h1 id="todayWater">0 L</h1>
+<p>Goal: 4 Litres</p>
+</div>
+
+<div class="water-card">
+<h3>Progress</h3>
+<div class="progress">
+<div class="progress-fill" id="progressFill"></div>
+</div>
+<p id="progressText">0%</p>
+</div>
+
+<div class="water-card">
+<h3>Quick Add</h3>
+<div class="quick-buttons">
+<button class="water-btn" data-amount="250">250 ml</button>
+<button class="water-btn" data-amount="500">500 ml</button>
+<button class="water-btn" data-amount="750">750 ml</button>
+<button class="water-btn" data-amount="1000">1 L</button>
+</div>
+</div>
+
+</section>
+
+<section class="history-section">
+<h2>Today's History</h2>
+<div id="waterHistory"></div>
+</section>
+
+</div>
+</main>
+
+<script src="js/navbar.js"></script>
+<script src="js/water.js"></script>
+
+</body>
+</html>
+
