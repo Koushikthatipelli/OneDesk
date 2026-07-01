@@ -1,1 +1,1 @@
-window.BASE_URL = "http://localhost:5000";
+window.BASE_URL = "https://onedesk-j81w.onrender.com";

@@ -51,7 +51,7 @@ showSuccess("Login Successful");
 
 setTimeout(() => {
 
-    window.location.href = "../v3/index.html";
+    window.location.href = "index.html";
 
 
 }, 1000);

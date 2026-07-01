@@ -1,85 +1,39 @@
 
-const user =
-    JSON.parse(
-        localStorage.getItem("user")
-    );
+// =========================
+// OneDesk V3 Profile (UI)
+// =========================
 
-const token =
-    localStorage.getItem("token");
+const user={
+name:"Koushik",
+email:"koushik@example.com",
+goal:"Stay Productive"
+};
 
-if (!token) {
+document.getElementById("userName").textContent=user.name;
+document.getElementById("userEmail").textContent=user.email;
 
-    window.location.href =
-        "login.html";
+document.getElementById("fullName").value=user.name;
+document.getElementById("email").value=user.email;
+document.getElementById("goal").value=user.goal;
 
-}
+document.getElementById("editProfileBtn").onclick=()=>{
 
-// User Details
+document.getElementById("fullName").focus();
 
-if (user) {
+};
 
-    document.getElementById(
-        "userName"
-    ).textContent =
-    user.name;
+document.getElementById("saveProfile").onclick=()=>{
 
-    document.getElementById(
-        "userEmail"
-    ).textContent =
-    user.email;
+user.name=document.getElementById("fullName").value;
+user.email=document.getElementById("email").value;
+user.goal=document.getElementById("goal").value;
 
-}
+document.getElementById("userName").textContent=user.name;
+document.getElementById("userEmail").textContent=user.email;
 
-// Random Motivation
+alert("Profile updated successfully!");
 
-const quotes = [
+};
 
-    "Success is the sum of small efforts repeated daily.",
-
-    "Stay consistent and trust the process.",
-
-    "Small progress every day adds up.",
-
-    "Focus on becoming better than yesterday.",
-
-    "Discipline beats motivation.",
-
-    "Dream big. Start small. Act now.",
-
-    "Your future is created by what you do today."
-
-];
-
-document.getElementById(
-    "profileQuote"
-).textContent =
-
-quotes[
-    Math.floor(
-        Math.random() *
-        quotes.length
-    )
-];
-
-// Logout
-
-document.getElementById(
-    "logoutBtn"
-).addEventListener(
-    "click",
-    () => {
-
-        localStorage.removeItem(
-            "token"
-        );
-
-        localStorage.removeItem(
-            "user"
-        );
-
-        window.location.href =
-            "login.html";
-
-    }
-);
+console.log("OneDesk V3 Profile Loaded");
 

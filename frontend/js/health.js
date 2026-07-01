@@ -1,40 +1,128 @@
-console.log("Health JS Version 2");
-let waterChart;
-let calorieChart;
-const SEARCH_API =
-"http://localhost:5000/api/health/search";
+// ==========================================
+// OneDesk V3 Health
+// Premium Backend Connected
+// ==========================================
+
+// ===========================
+// API URLs
+// ===========================
+
+const BASE_URL = "http://localhost:5000/api/health";
+
+const FOOD_API = `${BASE_URL}/food`;
+const WATER_API = `${BASE_URL}/water`;
+const ANALYTICS_API = `${BASE_URL}/analytics`;
+const SEARCH_API = `${BASE_URL}/search`;
+
+// ===========================
+// Authentication
+// ===========================
+
+const token = localStorage.getItem("token");
+
+if (!token) {
+
+    alert("Please login first.");
+
+    window.location.href = "../frontend/login.html";
+
+}
+
+// ===========================
+// Headers
+// ===========================
+
+const headers = {
+
+    "Content-Type": "application/json",
+
+    Authorization: `Bearer ${token}`
+
+};
+
+// ===========================
+// Elements
+// ===========================
+
+const foodForm =
+document.getElementById("foodForm");
+
+const foodContainer =
+document.getElementById("foodContainer");
+
+const foodSearch =
+document.getElementById("foodSearch");
+
+const foodQty =
+document.getElementById("foodQty");
+
+const mealType =
+document.getElementById("mealType");
 
 const suggestions =
-document.getElementById(
-"foodSuggestions"
-);
+document.getElementById("foodSuggestions");
+
+const caloriesToday =
+document.getElementById("caloriesToday");
+
+const proteinToday =
+document.getElementById("proteinToday");
+
+const waterToday =
+document.getElementById("waterToday");
+
+const mealCount =
+document.getElementById("mealCount");
+
 // ===========================
-// Food Search Suggestions
+// Variables
 // ===========================
 
-document.getElementById("foodSearch")
-.addEventListener("input", async function () {
+let foods = [];
 
-    const query = this.value.trim();
+let selectedFood = null;
 
-    if (query.length < 2) {
+let analytics = {};
+
+let totalWater = 0;
+
+// ===========================
+// Open Food Form
+// ===========================
+
+document
+.getElementById("addFoodBtn")
+.onclick = () => {
+
+    foodForm.style.display = "grid";
+
+};
+
+// ===========================
+// Close Suggestions
+// ===========================
+
+document.addEventListener("click", (e) => {
+
+    if (!foodSearch.contains(e.target) &&
+        !suggestions.contains(e.target)) {
 
         suggestions.style.display = "none";
-        suggestions.innerHTML = "";
-
-        return;
 
     }
+
+});
+// ===========================
+// Load Foods
+// ===========================
+
+async function loadFoods() {
 
     try {
 
         const response = await fetch(
 
-            SEARCH_API +
-
-            "?query=" +
-
-            encodeURIComponent(query),
+            FOOD_API,
 
             {
 
@@ -44,11 +132,110 @@ document.getElementById("foodSearch")
 
         );
 
-        const foods = await response.json();
+        const data = await response.json();
+
+        foods = data.foods || data;
+
+        renderFoods();
+
+        loadAnalytics();
+
+    }
+
+    catch (error) {
+
+        console.log(error);
+
+    }
+
+}
+
+// ===========================
+// Load Analytics
+// ===========================
+
+async function loadAnalytics() {
+
+    try {
+
+        const response = await fetch(
+
+            ANALYTICS_API,
+
+            {
+
+                headers
+
+            }
+
+        );
+
+        const data = await response.json();
+
+        analytics = data;
+
+        if (data.today) {
+
+            caloriesToday.textContent =
+                data.today.calories;
+
+            proteinToday.textContent =
+                data.today.protein + " g";
+
+            waterToday.textContent =
+                (data.today.water / 1000).toFixed(2) + " L";
+
+            mealCount.textContent =
+                data.today.meals;
+
+        }
+
+    }
+
+    catch (error) {
+
+        console.log(error);
+
+    }
+
+}
+// ===========================
+// Food Search Suggestions
+// ===========================
+
+foodSearch.addEventListener("input", async () => {
+
+    const query = foodSearch.value.trim();
+
+    if (query.length < 2) {
 
         suggestions.innerHTML = "";
 
-        if (foods.length === 0) {
+        suggestions.style.display = "none";
+
+        return;
+
+    }
+
+    try {
+
+        const response = await fetch(
+
+            `${SEARCH_API}?query=${encodeURIComponent(query)}`,
+
+            {
+
+                headers
+
+            }
+
+        );
+
+        const data = await response.json();
+
+        suggestions.innerHTML = "";
+
+        if (data.length === 0) {
 
             suggestions.style.display = "none";
 
@@ -56,13 +243,13 @@ document.getElementById("foodSearch")
 
         }
 
-        foods.forEach(food => {
+        data.forEach(food => {
 
-            suggestions.innerHTML += `
+            const item = document.createElement("div");
 
-            <div class="food-item"
+            item.className = "food-item";
 
-            onclick="selectFood('${food.name}')">
+            item.innerHTML = `
 
                 <strong>${food.name}</strong>
 
@@ -70,15 +257,26 @@ document.getElementById("foodSearch")
 
                 <small>
 
-                ${food.calories} kcal |
-
-                ${food.protein} g Protein
+                    ${food.calories} kcal •
+                    ${food.protein} g Protein
 
                 </small>
 
-            </div>
-
             `;
+
+            item.onclick = () => {
+
+                selectedFood = food;
+
+                foodSearch.value = food.name;
+
+                suggestions.style.display = "none";
+
+                suggestions.innerHTML = "";
+
+            };
+
+            suggestions.appendChild(item);
 
         });
 
@@ -93,775 +291,379 @@ document.getElementById("foodSearch")
     }
 
 });
-function selectFood(name){
+// ===========================
+// Render Foods
+// ===========================
 
-    document.getElementById("foodSearch").value = name;
+function renderFoods() {
 
-    suggestions.innerHTML = "";
+    foodContainer.innerHTML = "";
 
-    suggestions.style.display = "none";
+    if (foods.length === 0) {
 
-}
+        foodContainer.innerHTML = `
 
+        <div class="empty-state">
 
-const token =
-    localStorage.getItem("token");
+            <h3>No foods added today</h3>
 
-if (!token) {
+            <p>Click "Add Food" to start tracking.</p>
 
-    window.location.href =
-        "login.html";
+        </div>
 
-}
+        `;
 
-const waterLogs =
-    document.getElementById(
-        "waterLogs"
-    );
+        return;
 
-
-const foodName =
-    document.getElementById("foodName");
-
-const quantity =
-    document.getElementById("quantity");
-
-const mealType =
-    document.getElementById("mealType");
-
-const addFoodBtn =
-    document.getElementById("addFoodBtn");
-
-const foodLogs =
-    document.getElementById("foodLogs");
-
-const caloriesTotal =
-    document.getElementById("caloriesTotal");
-
-const proteinTotal =
-    document.getElementById("proteinTotal");
-
-const carbsTotal =
-    document.getElementById("carbsTotal");
-
-const fatsTotal =
-    document.getElementById("fatsTotal");
-
-const waterTotal =
-    document.getElementById("waterTotal");
-    const foodSuggestions =
-    document.getElementById(
-        "foodSuggestions"
-    );
-
-const availableFoods = [
-
-    // Eggs & Dairy
-
-    "Egg",
-    "Boiled Egg",
-    "Omelette",
-    "Egg White",
-    "Milk",
-    "Curd",
-    "Paneer",
-    "Butter",
-    "Cheese",
-    "Greek Yogurt",
-
-    // Fruits
-
-    "Banana",
-    "Apple",
-    "Orange",
-    "Mango",
-    "Papaya",
-    "Watermelon",
-    "Pineapple",
-    "Guava",
-    "Grapes",
-    "Pomegranate",
-    "Kiwi",
-    "Muskmelon",
-    "Strawberry",
-    "Pear",
-    "Dates",
-
-    // Rice
-
-    "White Rice",
-    "Brown Rice",
-    "Curd Rice",
-    "Lemon Rice",
-    "Tomato Rice",
-    "Fried Rice",
-    "Jeera Rice",
-    "Veg Biryani",
-    "Chicken Biryani",
-    "Mutton Biryani",
-
-    // Roti & Bread
-
-    "Chapati",
-    "Roti",
-    "Paratha",
-    "Aloo Paratha",
-    "Naan",
-    "Kulcha",
-    "Bread",
-    "Brown Bread",
-
-    // South Indian
-
-    "Idli",
-    "Dosa",
-    "Masala Dosa",
-    "Rava Dosa",
-    "Onion Dosa",
-    "Uttapam",
-    "Pongal",
-    "Upma",
-    "Poha",
-    "Vada",
-    "Medu Vada",
-    "Sambar",
-    "Rasam",
-
-    // Chicken
-
-    "Chicken Breast",
-    "Chicken Curry",
-    "Chicken Fry",
-    "Chicken Biryani",
-    "Chicken Tikka",
-    "Grilled Chicken",
-    "Chicken Wings",
-
-    // Fish & Seafood
-
-    "Fish Curry",
-    "Fish Fry",
-    "Prawns",
-    "Shrimp Curry",
-    "Tuna",
-
-    // Mutton
-
-    "Mutton Curry",
-    "Mutton Fry",
-
-    // Vegetarian Protein
-
-    "Dal",
-    "Rajma",
-    "Chole",
-    "Green Gram",
-    "Black Gram",
-    "Soy Chunks",
-    "Tofu",
-
-    // Breakfast
-
-    "Oats",
-    "Corn Flakes",
-    "Muesli",
-    "Peanut Butter",
-
-    // Drinks
-
-    "Tea",
-    "Coffee",
-    "Green Tea",
-    "Black Coffee",
-    "Lassi",
-    "Buttermilk",
-    "Coconut Water",
-
-    // Nuts
-
-    "Almonds",
-    "Cashews",
-    "Walnuts",
-    "Peanuts",
-    "Pistachios",
-
-    // Fitness
-
-    "Protein Shake",
-    "Whey Protein",
-    "Mass Gainer"
-
-];
-
-
-
-// Load Dashboard
-
-async function loadHealth() {
-
-    try {
-         
-
-     const foodResponse =
-await fetch(
-    `${BASE_URL}/health/food`,
-    {
-        headers: {
-            Authorization: `Bearer ${token}`
-        }
     }
-);
-            
 
-        const foods =
-            await foodResponse.json();
+    foods.forEach(food => {
 
-        let calories = 0;
-        let protein = 0;
-        let carbs = 0;
-        let fats = 0;
+        foodContainer.innerHTML += `
 
-        foodLogs.innerHTML = "";
+        <div class="food-card">
 
-        foods.forEach(food => {
+            <div class="food-info">
 
-            calories += food.calories;
-            protein += food.protein;
-            carbs += food.carbs;
-            fats += food.fats;
-
-            const card =
-                document.createElement("div");
-
-            card.classList.add(
-                "food-log-card"
-            );
-
-            card.innerHTML = `
-                <h3>
-                    ${food.foodName}
-                </h3>
+                <h3>${food.foodName}</h3>
 
                 <p>
-                    Meal:
-                    ${food.mealType}
+
+                    ${food.quantity} g • ${food.mealType}
+
                 </p>
 
-                <p>
-                    Weight:
-${food.quantity} 
-                </p>
+                <small>
 
-                <p>
-                    Calories:
-                    ${food.calories}
-                </p>
+                    🔥 ${food.calories} kcal
+
+                    &nbsp;&nbsp;
+
+                    💪 ${food.protein} g
+
+                    &nbsp;&nbsp;
+
+                    🍚 ${food.carbs} g
+
+                    &nbsp;&nbsp;
+
+                    🥑 ${food.fats} g
+
+                </small>
+
+            </div>
+
+            <div class="food-actions">
 
                 <button
+
                     class="delete-food-btn"
+
                     onclick="deleteFood('${food._id}')"
+
                 >
-                    🗑 Delete
+
+                    <i class="ti ti-trash"></i>
+
                 </button>
-            `;
 
-            foodLogs.appendChild(card);
+            </div>
 
-        });
+        </div>
 
-        caloriesTotal.textContent =
-            calories;
+        `;
 
-        proteinTotal.textContent =
-            protein.toFixed(1) + "g";
-
-        carbsTotal.textContent =
-            carbs.toFixed(1) + "g";
-
-        fatsTotal.textContent =
-            fats.toFixed(1) + "g";
-
-        const waterResponse =
-          await fetch(
-    `${BASE_URL}/health/water`,
-                {
-                    headers:{
-                        Authorization:
-                        `Bearer ${token}`
-                    }
-                }
-            );
-
-        const water =
-            await waterResponse.json();
-
-        waterTotal.textContent =
-            water.totalWater + "ml";
-            
-const goal = 4000;
-
-const percentage =
-    Math.min(
-        (water.totalWater / goal) * 100,
-        100
-    );
-
-document.getElementById(
-    "waterFill"
-).style.height =
-    percentage + "%";
-
-document.getElementById(
-    "waterPercent"
-).textContent =
-    Math.round(percentage) + "%";
-
-document.getElementById(
-    "waterGoalText"
-).textContent =
-    `${water.totalWater} / ${goal} ml`;
- 
-waterLogs.innerHTML = "";
-
-water.logs.forEach(log => {
-
-    const card =
-        document.createElement("div");
-
-    card.classList.add(
-        "water-log-card"
-    );
-
-    card.innerHTML = `
-
-        <span>
-            💧 ${log.amount}ml
-        </span>
-
-        <button
-            class="delete-water-btn"
-            onclick="deleteWater('${log._id}')"
-        >
-            🗑 Delete
-        </button>
-
-    `;
-
-    waterLogs.appendChild(card);
-
-});
-
-
-
-
-    }
-
-    catch(error){
-        hideLoader();
-
-        console.error(error);
-
-    }
+    });
 
 }
 
-// Add Food
-
-addFoodBtn.addEventListener(
-    "click",
-    async () => {
-
-        try {
-
-            if(
-                !foodName.value ||
-                !quantity.value
-            ){
-                return;
-            }
-            showLoader("Adding Food...");
-            await fetch(
-         `${BASE_URL}/health/food`,
-                {
-                    method:"POST",
-
-                    headers:{
-                        "Content-Type":
-                        "application/json",
-
-                        Authorization:
-                        `Bearer ${token}`
-                    },
-
-                    body:JSON.stringify({
-
-                        foodName:
-                            foodName.value,
-
-                        quantity:
-                            Number(
-                                quantity.value
-                            ),
-
-                        mealType:
-                            mealType.value
-
-                    })
-                }
-            );
-
-            foodName.value = "";
-            quantity.value = "";
-            hideLoader();
-showSuccess("Food Added Successfully 🍽️");
-
-            loadHealth();
-
-        }
-
-        catch(error){
-            hideLoader();
-
-    showError("Something went wrong");
-
-            console.error(error);
-
-        }
-
-    }
-);
-
-// Delete Food
-
-async function deleteFood(id) {
-
-    try {
-        showLoader("Deleting Food...");
-
-        await fetch(
-            `${BASE_URL}/health/food/${id}`,
-            {
-                method: "DELETE",
-
-                headers: {
-                    Authorization:
-                    `Bearer ${token}`
-                }
-            }
-        );
-        showSuccess("Food Deleted Successfully");
-
-        hideLoader();
-        loadAnalytics();
-
-        loadHealth();
-
-    }
-
-    catch (error) {
-        hideLoader();
-         showError("Something went wrong");
-        console.error(error);
-
-    }
-
-}
-
-// Water Buttons
+// ===========================
+// Save Food
+// ===========================
 
 document
-.querySelectorAll(".water-btn")
-.forEach(button => {
+.getElementById("saveFood")
+.onclick = async () => {
 
-    button.addEventListener(
-        "click",
-        async () => {
+    const foodName =
 
-            const amount =
-                Number(
-                    button.dataset.water
-                );
-                showLoader("Updating Water...");
+        foodSearch.value.trim();
 
-            await fetch(
-    `${BASE_URL}/health/water`,
-                {
-                    method:"POST",
+    const quantity =
 
-                    headers:{
-                        "Content-Type":
-                        "application/json",
+        foodQty.value;
 
-                        Authorization:
-                        `Bearer ${token}`
-                    },
+    const meal =
 
-                    body:JSON.stringify({
-                        amount
-                    })
-                }
-            );
-            loadAnalytics();
-            showSuccess("Water Intake Updated 💧");
-            loadHealth();
-            hideLoader();
+        mealType.value;
 
-        }
-    );
+    if (!foodName || !quantity) {
 
-});
+        alert("Fill all fields.");
 
-foodName.addEventListener(
-    "input",
-    () => {
+        return;
 
-        const search =
-            foodName.value
-            .toLowerCase();
+    }
 
-        foodSuggestions.innerHTML = "";
+    try {
 
-        if(search.length === 0){
+        const response = await fetch(
+
+            FOOD_API,
+
+            {
+
+                method: "POST",
+
+                headers,
+
+                body: JSON.stringify({
+
+                    foodName,
+
+                    quantity,
+
+                    mealType: meal
+
+                })
+
+            }
+
+        );
+
+        const data = await response.json();
+
+        if (!response.ok) {
+
+            alert(data.message);
 
             return;
 
         }
 
-        const filteredFoods =
-            availableFoods.filter(
-                food =>
-                    food
-                    .toLowerCase()
-                    .includes(search)
-            );
+        foodSearch.value = "";
 
-        filteredFoods.forEach(food => {
+        foodQty.value = "";
 
-            const item =
-                document.createElement("div");
+        selectedFood = null;
 
-            item.classList.add(
-                "suggestion-item"
-            );
+        foodForm.style.display = "none";
 
-            item.textContent =
-                food;
+        await loadFoods();
 
-            item.addEventListener(
-                "click",
-                () => {
-
-                    foodName.value =
-                        food;
-
-                    foodSuggestions
-                        .innerHTML = "";
-
-                }
-            );
-
-            foodSuggestions
-                .appendChild(item);
-
-        });
+        await loadAnalytics();
 
     }
-);
 
+    catch (error) {
 
+        console.log(error);
 
-async function deleteWater(id) {
+    }
+
+};
+
+// ===========================
+// Delete Food
+// ===========================
+
+async function deleteFood(id) {
+
+    if (!confirm("Delete this food?")) {
+
+        return;
+
+    }
 
     try {
-        showLoader("Deleting Water...");
 
         await fetch(
 
-           `${BASE_URL}/health/water/${id}`,
+            FOOD_API + "/" + id,
 
             {
 
                 method: "DELETE",
 
-                headers: {
-
-                    Authorization:
-                    `Bearer ${token}`
-
-                }
+                headers
 
             }
 
         );
-        showSuccess("Water Entry Deleted");
-        loadHealth();
-        hideLoader();
+
+        await loadFoods();
+
+        await loadAnalytics();
 
     }
 
     catch (error) {
-         showError("Something went wrong");
 
-        console.error(error);
-        hideLoader();
+        console.log(error);
 
     }
 
 }
+// ===========================
+// Water Tracker
+// ===========================
 
-async function loadAnalytics() {
+document.querySelectorAll(".water-btn").forEach(btn => {
 
-    try {
-const response =
-await fetch(
-    `${BASE_URL}/health/analytics`,
+    btn.addEventListener("click", async () => {
+
+        try {
+
+            const text = btn.innerText.trim();
+
+            let amount = 0;
+
+            if (text.includes("250")) amount = 250;
+            else if (text.includes("500")) amount = 500;
+            else if (text.includes("750")) amount = 750;
+            else if (text.includes("1")) amount = 1000;
+
+            const response = await fetch(
+
+                WATER_API,
+
                 {
-                    headers:{
-                        Authorization:
-                        `Bearer ${token}`
-                    }
-                }
-            );
 
-        const data =
-            await response.json();
+                    method: "POST",
 
-        const labels =
-            data.map(
-                item => item.day
-            );
+                    headers,
 
-        const waterData =
-            data.map(
-                item => item.water
-            );
+                    body: JSON.stringify({
 
-        const calorieData =
-            data.map(
-                item => item.calories
-            );
+                        amount
 
-        if(waterChart){
-
-            waterChart.destroy();
-
-        }
-
-        if(calorieChart){
-
-            calorieChart.destroy();
-
-        }
-waterChart = new Chart(
-
-    document.getElementById(
-        "waterChart"
-    ),
-
-    {
-
-        type: "line",
-
-        data: {
-
-            labels,
-
-            datasets: [{
-
-                label:
-                    "💧 Water Intake",
-
-                data:
-                    waterData,
-
-                borderColor:
-                    "#3b82f6",
-
-                backgroundColor:
-                    "rgba(59,130,246,0.2)",
-
-                fill: true,
-
-                tension: 0.4,
-
-                borderWidth: 4,
-
-                pointRadius: 6,
-
-                pointHoverRadius: 8
-
-            }]
-
-        },
-
-        options: {
-
-            responsive: true,
-
-            plugins: {
-
-                legend: {
-
-                    labels: {
-
-                        font: {
-                            size: 14,
-                            weight: "bold"
-                        }
-
-                    }
+                    })
 
                 }
+
+            );
+
+            if (!response.ok) {
+
+                alert("Unable to add water.");
+
+                return;
 
             }
 
+            await loadAnalytics();
+
         }
 
-    }
+        catch (error) {
 
-);
-        calorieChart =
-            new Chart(
+            console.log(error);
 
-                document.getElementById(
-                    "calorieChart"
-                ),
+        }
 
-                {
+    });
 
-                    type:"bar",
+});
 
-                    data:{
+// ===========================
+// Close Food Form
+// ===========================
 
-                        labels,
+document.addEventListener("keydown", e => {
 
-                        datasets:[{
+    if (e.key === "Escape") {
 
-                            label:
-                                "Calories",
+        foodForm.style.display = "none";
 
-                            data:
-                                calorieData
-
-                        }]
-
-                    }
-
-                }
-
-            );
+        suggestions.style.display = "none";
 
     }
 
-    catch(error){
-       hideLoader();
-        console.error(error);
+});
 
-    }
+// ===========================
+// Initialize
+// ===========================
+
+window.onload = async () => {
+
+    await loadFoods();
+
+    await loadAnalytics();
+
+};
+
+console.log("✅ OneDesk V3 Health Connected");
+// ===========================
+// Food Selection
+// ===========================
+
+function selectFood(food) {
+
+    selectedFood = food;
+
+    foodSearch.value = food.name;
+
+    suggestions.innerHTML = "";
+
+    suggestions.style.display = "none";
+
+    const preview = document.getElementById("nutritionPreview");
+
+    if (!preview) return;
+
+    preview.innerHTML = `
+
+        <div class="nutrition-card">
+
+            <h4>${food.name}</h4>
+
+            <div class="nutrition-grid">
+
+                <div>
+
+                    🔥
+
+                    <strong>${food.calories}</strong>
+
+                    <span>Calories</span>
+
+                </div>
+
+                <div>
+
+                    💪
+
+                    <strong>${food.protein} g</strong>
+
+                    <span>Protein</span>
+
+                </div>
+
+                <div>
+
+                    🍚
+
+                    <strong>${food.carbs} g</strong>
+
+                    <span>Carbs</span>
+
+                </div>
+
+                <div>
+
+                    🥑
+
+                    <strong>${food.fats} g</strong>
+
+                    <span>Fat</span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    `;
 
 }
-
-
-loadAnalytics();
-loadHealth();
-

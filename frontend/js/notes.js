@@ -1,245 +1,502 @@
+// ==========================================
+// OneDesk V3 Notes
+// Backend Connected
+// ==========================================
 
-const noteInput =
-    document.getElementById("noteInput");
-
-const saveNoteBtn =
-    document.getElementById("saveNoteBtn");
-
-const notesContainer =
-    document.getElementById("notesContainer");
-
-const notesCount =
-    document.getElementById("notesCount");
+const API =
+"http://localhost:5000/api/notes";
 
 const token =
-    localStorage.getItem("token");
+localStorage.getItem("token");
 
-if (!token) {
+const headers={
 
-    window.location.href =
-        "login.html";
+"Content-Type":"application/json",
+
+Authorization:`Bearer ${token}`
+
+};
+
+const editor=
+document.getElementById("noteEditor");
+
+const grid=
+document.getElementById("notesGrid");
+
+let notes=[];
+
+let editingId=null;
+
+// ===========================
+// Load Notes
+// ===========================
+
+async function loadNotes(){
+
+try{
+
+const response=
+
+await fetch(
+
+API,
+
+{
+
+headers
 
 }
 
-// Daily Quotes
+);
 
-const quotes = [
+const data=
 
-    "Great ideas start with small notes.",
+await response.json();
 
-    "Write it down before you forget it.",
+notes=
 
-    "Every big project starts as a note.",
+data.notes||
 
-    "Capture thoughts. Build dreams.",
+data;
 
-    "Your future self will thank you."
+renderNotes(notes);
 
-];
+}
+
+catch(error){
+
+console.log(error);
+
+}
+
+}
+
+// ===========================
+// New Note
+// ===========================
 
 document.getElementById(
-    "noteQuote"
-).textContent =
 
-quotes[
-    Math.floor(
-        Math.random() *
-        quotes.length
-    )
-];
+"newNoteBtn"
 
-// Load Notes
+).onclick=()=>{
 
-async function loadNotes() {
+editingId=null;
 
-    try {
+editor.style.display="grid";
 
-        const response =
-                  await fetch(
-    `${BASE_URL}/notes`,
-                {
-                    headers: {
-                        Authorization:
-                        `Bearer ${token}`
-                    }
-                }
-            );
+};
 
-        const notes =
-            await response.json();
+// ===========================
+// Save Note
+// ===========================
 
-        notesContainer.innerHTML = "";
+document.getElementById(
 
-        notesCount.textContent =
-            notes.length;
+"saveNote"
 
-        if (notes.length === 0) {
+).onclick=
 
-            notesContainer.innerHTML = `
-                <div class="note-card">
-                    <p>
-                        ✨ No notes yet.
-                        Create your first note.
-                    </p>
-                </div>
-            `;
+async()=>{
 
-            return;
+const title=
 
-        }
+document.getElementById(
 
-        notes.reverse().forEach(note => {
+"noteTitle"
 
-            const card =
-                document.createElement("div");
+).value;
 
-            card.classList.add(
-                "note-card"
-            );
+const category=
 
-            const createdDate =
-                new Date(
-                    note.createdAt
-                ).toLocaleString(
-                    "en-IN"
-                );
+document.getElementById(
 
-            card.innerHTML = `
+"noteCategory"
 
-                <p>
-                    ${note.content}
-                </p>
+).value;
 
-                <small
-                style="
-                color:#9CA3AF;
-                display:block;
-                margin-bottom:15px;
-                ">
-                    ${createdDate}
-                </small>
+const content=
 
-                <button
-                    class="delete-btn"
-                    onclick="
-                    deleteNote(
-                        '${note._id}'
-                    )">
-                    Delete
-                </button>
+document.getElementById(
 
-            `;
+"noteContent"
 
-            notesContainer.appendChild(
-                card
-            );
+).value;
 
-        });
+if(!title||!content){
 
-    }
+alert(
 
-    catch (error) {
+"Please fill all fields."
 
-        console.error(error);
+);
 
-    }
+return;
 
 }
 
-// Save Note
+const body={
 
-saveNoteBtn.addEventListener(
-"click",
-async () => {
+title,
 
-    try {
-       
+category,
 
-        const content =
-            noteInput.value.trim();
+content
 
-        if (!content) {
+};
 
-            alert(
-                "Please write a note"
-            );
+if(editingId){
 
-            return;
+await fetch(
 
-        }
-         showLoader("Saving Note...");
-        await fetch(
-           `${BASE_URL}/notes`,
-            {
-                method: "POST",
+API+"/"+editingId,
 
-                headers: {
-                    "Content-Type":
-                    "application/json",
+{
 
-                    Authorization:
-                    `Bearer ${token}`
-                },
+method:"PUT",
 
-                body: JSON.stringify({
-                    content
-                })
-            }
-        );
+headers,
 
-        noteInput.value = "";
-        showSuccess("Note Saved Successfully");
+body:JSON.stringify(body)
 
-        loadNotes();
-        hideLoader();
+}
 
-    }
+);
 
-    catch (error) {
+editingId=null;
 
-        console.error(error);
-        showError("Unable to process note");
-        hideLoader();
+}else{
 
-    }
+await fetch(
+
+API,
+
+{
+
+method:"POST",
+
+headers,
+
+body:JSON.stringify(body)
+
+}
+
+);
+
+}
+
+document.getElementById(
+
+"noteTitle"
+
+).value="";
+
+document.getElementById(
+
+"noteContent"
+
+).value="";
+
+editor.style.display="none";
+
+loadNotes();
+
+};
+// ===========================
+// Render Notes
+// ===========================
+
+function renderNotes(list){
+
+grid.innerHTML="";
+
+list.forEach(note=>{
+
+grid.innerHTML+=`
+
+<div class="note-card">
+
+<div class="note-title">
+
+${note.title}
+
+</div>
+
+<div class="note-category">
+
+${note.category}
+
+</div>
+
+<div class="note-content">
+
+${note.content}
+
+</div>
+
+<div class="note-actions">
+
+<button
+
+class="note-btn"
+
+onclick="editNote('${note._id}')">
+
+<i class="ti ti-edit"></i>
+
+Edit
+
+</button>
+
+<button
+
+class="note-btn delete"
+
+onclick="deleteNote('${note._id}')">
+
+<i class="ti ti-trash"></i>
+
+Delete
+
+</button>
+
+</div>
+
+</div>
+
+`;
 
 });
 
-// Delete Note
+}
 
-async function deleteNote(id) {
+// ===========================
+// Edit Note
+// ===========================
 
-    try {
-        showLoader("Deleting Note...");
+function editNote(id){
 
-      await fetch(
-    `${BASE_URL}/notes/${id}`,
-    {
-        method: "DELETE",
-        headers: {
-            Authorization: `Bearer ${token}`
-        }
-    }
+const note=
+
+notes.find(
+
+n=>n._id===id
+
 );
 
-loadNotes();
-showSuccess("Note Deleted Successfully");
+if(!note) return;
 
+editingId=id;
 
-        loadNotes();
-        hideLoader();
+document.getElementById(
 
-    }
+"noteTitle"
 
-    catch (error) {
+).value=
 
-        console.error(error);
-        showError("Unable to process note");
-        hideLoader();
+note.title;
 
-    }
+document.getElementById(
+
+"noteCategory"
+
+).value=
+
+note.category;
+
+document.getElementById(
+
+"noteContent"
+
+).value=
+
+note.content;
+
+editor.style.display="grid";
 
 }
 
+// ===========================
+// Delete Note
+// ===========================
+
+async function deleteNote(id){
+
+if(!confirm(
+
+"Delete this note?"
+
+))
+
+return;
+
+await fetch(
+
+API+"/"+id,
+
+{
+
+method:"DELETE",
+
+headers
+
+}
+
+);
+
 loadNotes();
 
+}
+// ===========================
+// Search Notes
+// ===========================
+
+document.getElementById(
+
+"searchNote"
+
+).addEventListener(
+
+"input",
+
+e=>{
+
+const value=
+
+e.target.value
+
+.toLowerCase();
+
+const filtered=
+
+notes.filter(note=>{
+
+return(
+
+note.title
+
+.toLowerCase()
+
+.includes(value)
+
+||
+
+note.content
+
+.toLowerCase()
+
+.includes(value)
+
+);
+
+});
+
+renderNotes(filtered);
+
+});
+
+// ===========================
+// Category Filter
+// ===========================
+
+document.getElementById(
+
+"category"
+
+).addEventListener(
+
+"change",
+
+e=>{
+
+const category=
+
+e.target.value;
+
+if(category==="All"){
+
+renderNotes(notes);
+
+return;
+
+}
+
+const filtered=
+
+notes.filter(
+
+note=>
+
+note.category===category
+
+);
+
+renderNotes(filtered);
+
+});
+
+// ===========================
+// Cancel
+// ===========================
+
+document.getElementById(
+
+"cancelNote"
+
+).onclick=()=>{
+
+editingId=null;
+
+editor.style.display="none";
+
+};
+
+// ===========================
+// Close
+// ===========================
+
+document.getElementById(
+
+"closeEditor"
+
+).onclick=()=>{
+
+editingId=null;
+
+editor.style.display="none";
+
+};
+
+// ===========================
+// Login Check
+// ===========================
+
+if(!token){
+
+alert(
+
+"Please login first."
+
+);
+
+window.location.href=
+
+"login.html";
+
+}
+
+// ===========================
+// Initialize
+// ===========================
+
+window.onload=()=>{
+
+loadNotes();
+
+};
+
+console.log(
+
+"OneDesk V3 Notes Connected"
+
+);

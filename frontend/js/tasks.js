@@ -1,243 +1,566 @@
+// ==========================================
+// OneDesk V3 Tasks
+// Backend Connected
+// ==========================================
 
-const taskInput = document.getElementById("taskInput");
-const addTaskBtn = document.getElementById("addTaskBtn");
-const taskList = document.getElementById("taskList");
+const API =
+"http://localhost:5000/api/todos";
 
-const token = localStorage.getItem("token");
+const token =
+localStorage.getItem("token");
 
-if (!token) {
-    window.location.href = "login.html";
-}
+const headers={
 
-async function loadTasks() {
+"Content-Type":"application/json",
 
-    try {
+Authorization:`Bearer ${token}`
 
-        const response = await fetch(
-    `${BASE_URL}/todos`,
-            {
-                headers: {
-                    Authorization: `Bearer ${token}`
-                }
-            }
-        );
+};
 
-        const tasks = await response.json();
+const taskList=
+document.getElementById("taskList");
 
-        updateProgress(tasks);
+const taskForm=
+document.getElementById("taskForm");
 
-        taskList.innerHTML = "";
+const newTaskBtn=
+document.getElementById("newTaskBtn");
 
-        tasks.forEach(task => {
+const cancelTask=
+document.getElementById("cancelTask");
 
-            const li =
-                document.createElement("div");
+const saveTask=
+document.getElementById("saveTask");
 
-            li.classList.add("task-card");
+const searchTask=
+document.getElementById("searchTask");
 
-            li.innerHTML = `
+const progressPercent=
+document.getElementById("progressPercent");
 
-                <div class="task-item">
+const emptyState=
+document.getElementById("emptyState");
 
-                    <div class="left-task">
+let tasks=[];
 
-                        <input
-                            type="checkbox"
-                            ${task.completed ? "checked" : ""}
-                            onchange="
-                                toggleTask(
-                                    '${task._id}',
-                                    this.checked
-                                )
-                            "
-                        >
+let editingId=null;
 
-                        <span class="
-                            task-title
-                            ${task.completed ? "completed" : ""}
-                        ">
-                            ${task.title}
-                        </span>
+// ===========================
+// Load Tasks
+// ===========================
 
-                    </div>
+async function loadTasks(){
 
-                    <div style="
-                        display:flex;
-                        align-items:center;
-                        gap:10px;
-                    ">
+try{
 
-                        ${
-                            task.completed
-                            ? `<span class="completed-badge">
-                                Completed
-                               </span>`
-                            : ""
-                        }
+const response=
 
-                        <button
-                            class="delete-btn"
-                            onclick="deleteTask('${task._id}')">
-                            Delete
-                        </button>
+await fetch(
 
-                    </div>
+API,
 
-                </div>
+{
 
-            `;
-
-            taskList.appendChild(li);
-
-        });
-
-    } catch (error) {
-
-        console.error(error);
-        showError("Unable to process task");
-
-    }
+headers
 
 }
 
-addTaskBtn.addEventListener(
-"click",
-async () => {
-
-    try {
-
-        const title =
-            taskInput.value.trim();
-
-        if (!title) {
-
-           showWarning("Please enter a task");
-
-            return;
-
-        }
-
-        await fetch(
-            `${BASE_URL}/todos`,
-            {
-                method: "POST",
-
-                headers: {
-                    "Content-Type":
-                    "application/json",
-
-                    Authorization:
-                    `Bearer ${token}`
-                },
-
-                body: JSON.stringify({
-                    title
-                })
-            }
-        );
-
-        taskInput.value = "";
-        showSuccess("Task Added Successfully");
-
-        loadTasks();
-
-    } catch (error) {
-
-        console.error(error);
-showError("Unable to process task");
-    }
-
-});
-
-async function toggleTask(id, completed) {
-
-    try {
-        showLoader("Updating Task...");
-
-        await fetch(
-    `${BASE_URL}/todos/${id}`,
-    {
-        method: "PUT",
-
-        headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`
-        },
-
-        body: JSON.stringify({
-            completed
-        })
-    }
 );
-        hideLoader();
-        showSuccess("Task Updated Successfully");
-        loadTasks();
 
-    } catch (error) {
-        hideLoader();
-       
+const data=
+
+await response.json();
+
+tasks=
+
+data.todos||
+
+data;
+
+renderTasks();
+
+}
+
+catch(error){
+
 console.error(error);
 
-showError("Unable to process task");
-    }
+}
 
 }
 
-async function deleteTask(id) {
+// ===========================
+// Open Form
+// ===========================
 
-    try {
-        showLoader("Deleting Task...");
+newTaskBtn.onclick=()=>{
+
+editingId=null;
+
+taskForm.style.display="block";
+
+};
+
+// ===========================
+// Cancel
+// ===========================
+
+cancelTask.onclick=()=>{
+
+taskForm.style.display="none";
+
+editingId=null;
+
+};
+
+// ===========================
+// Save
+// ===========================
+
+saveTask.onclick=
+
+async()=>{
+
+const title=
+
+document.getElementById(
+
+"taskTitle"
+
+).value;
+
+const desc=
+
+document.getElementById(
+
+"taskDescription"
+
+).value;
+
+const priority=
+
+document.getElementById(
+
+"taskPriority"
+
+).value;
+
+const due=
+
+document.getElementById(
+
+"taskDate"
+
+).value;
+
+const category=
+
+document.getElementById(
+
+"taskCategory"
+
+).value;
+
+if(!title){
+
+alert("Enter Task");
+
+return;
+
+}
+
+const body={
+
+title,
+
+desc,
+
+priority,
+
+due,
+
+category
+
+};
+
+if(editingId){
+
 await fetch(
-    `${BASE_URL}/todos/${id}`,
-    {
-        method: "DELETE",
-        headers: {
-            Authorization:
-            `Bearer ${token}`
-        }
-    }
+
+API+"/"+editingId,
+
+{
+
+method:"PUT",
+
+headers,
+
+body:JSON.stringify(body)
+
+}
+
 );
-        hideLoader();
-        loadTasks();
 
-    } catch (error) {
+editingId=null;
 
-        console.error(error);
-        hideLoader();
-        showError("Unable to process task");
+}else{
 
-    }
+await fetch(
+
+API,
+
+{
+
+method:"POST",
+
+headers,
+
+body:JSON.stringify(body)
+
+}
+
+);
 
 }
 
-function updateProgress(tasks) {
+taskForm.style.display="none";
 
-    const completed =
-        tasks.filter(
-            task => task.completed
-        ).length;
+document.getElementById(
 
-    const total =
-        tasks.length;
+"taskTitle"
 
-    const percentage =
-        total === 0
-        ? 0
-        : Math.round(
-            (completed / total) * 100
-        );
+).value="";
 
-    document.getElementById(
-        "progressText"
-    ).textContent =
-    `${percentage}%`;
+document.getElementById(
 
-    document.getElementById(
-        "progressFill"
-    ).style.width =
-    `${percentage}%`;
+"taskDescription"
 
-}
+).value="";
 
 loadTasks();
 
+};
+// ===========================
+// Render Tasks
+// ===========================
+
+function renderTasks(){
+
+taskList.innerHTML="";
+
+if(tasks.length===0){
+
+emptyState.style.display="flex";
+
+progressPercent.innerHTML="0%";
+
+return;
+
+}
+
+emptyState.style.display="none";
+
+let completed=0;
+
+tasks.forEach(task=>{
+
+if(task.completed)
+
+completed++;
+
+taskList.innerHTML+=`
+
+<div class="task-card ${task.completed?"completed":""}">
+
+<div class="task-left">
+
+<h2 class="task-title">
+
+${task.title}
+
+</h2>
+
+<p class="task-description">
+
+${task.desc||""}
+
+</p>
+
+<div class="task-meta">
+
+<span class="priority ${(task.priority||"Medium").toLowerCase()}">
+
+${task.priority||"Medium"}
+
+</span>
+
+<span class="meta-item">
+
+${task.category||"General"}
+
+</span>
+
+<span class="meta-item">
+
+${task.due||""}
+
+</span>
+
+</div>
+
+</div>
+
+<div class="task-right">
+
+<button
+
+class="icon-btn complete-btn"
+
+onclick="toggleTask('${task._id}')">
+
+✓
+
+</button>
+
+<button
+
+class="icon-btn edit-btn"
+
+onclick="editTask('${task._id}')">
+
+✎
+
+</button>
+
+<button
+
+class="icon-btn delete-btn"
+
+onclick="deleteTask('${task._id}')">
+
+🗑
+
+</button>
+
+</div>
+
+</div>
+
+`;
+
+});
+
+const percent=
+
+Math.round(
+
+(completed/tasks.length)*100
+
+);
+
+progressPercent.innerHTML=
+
+percent+"%";
+
+}
+
+// ===========================
+// Delete
+// ===========================
+
+async function deleteTask(id){
+
+try{
+
+await fetch(
+
+API+"/"+id,
+
+{
+
+method:"DELETE",
+
+headers
+
+}
+
+);
+
+loadTasks();
+
+}
+
+catch(error){
+
+console.log(error);
+
+}
+
+}
+
+// ===========================
+// Complete
+// ===========================
+
+async function toggleTask(id){
+
+const task=
+
+tasks.find(
+
+t=>t._id===id
+
+);
+
+if(!task) return;
+
+await fetch(
+
+API+"/"+id,
+
+{
+
+method:"PUT",
+
+headers,
+
+body:JSON.stringify({
+
+completed:!task.completed
+
+})
+
+}
+
+);
+
+loadTasks();
+
+}
+
+// ===========================
+// Edit
+// ===========================
+
+function editTask(id){
+
+const task=
+
+tasks.find(
+
+t=>t._id===id
+
+);
+
+if(!task) return;
+
+editingId=id;
+
+document.getElementById(
+
+"taskTitle"
+
+).value=
+
+task.title;
+
+document.getElementById(
+
+"taskDescription"
+
+).value=
+
+task.desc||"";
+
+document.getElementById(
+
+"taskPriority"
+
+).value=
+
+task.priority||"Medium";
+
+document.getElementById(
+
+"taskDate"
+
+).value=
+
+task.due||"";
+
+document.getElementById(
+
+"taskCategory"
+
+).value=
+
+task.category||"General";
+
+taskForm.style.display="block";
+
+}
+// ===========================
+// Search Tasks
+// ===========================
+
+searchTask.onkeyup=()=>{
+
+const value=
+
+searchTask.value.toLowerCase();
+
+document.querySelectorAll(
+
+".task-card"
+
+).forEach(card=>{
+
+card.style.display=
+
+card.innerText
+
+.toLowerCase()
+
+.includes(value)
+
+?
+
+"flex"
+
+:
+
+"none";
+
+});
+
+};
+
+// ===========================
+// Check Login
+// ===========================
+
+if(!token){
+
+alert(
+
+"Please login first."
+
+);
+
+window.location.href=
+
+"login.html";
+
+}
+
+// ===========================
+// Initialize
+// ===========================
+
+window.onload=()=>{
+
+loadTasks();
+
+};
+
+renderTasks();

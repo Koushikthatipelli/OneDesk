@@ -1,84 +1,309 @@
-
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OneDesk Tasks</title>
-    <link rel="stylesheet" href="css/loader.css">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>Tasks | OneDesk V3</title>
+
+    <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+
+    <link rel="stylesheet" href="css/theme.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/navbar.css">
+    <link rel="stylesheet" href="css/components.css">
     <link rel="stylesheet" href="css/tasks.css">
-    <link rel="stylesheet" href="css/toast.css">
-    <link rel="icon" type="image/png" href="images/logo.jpeg">
+
 </head>
+
 <body>
+
+<header id="navbar"></header>
+
+<main class="page">
 
 <div class="container">
 
-    <aside class="sidebar">
+<!-- ================= HERO ================= -->
 
-        <div class="logo">OneDesk</div>
+<section class="task-hero">
 
-        <nav>
-            <a href="home.html">🏠 Home</a>
-            <a href="tasks.html" class="active">✅ Tasks</a>
-            <a href="notes.html">📝 Notes</a>
-            <a href="profile.html">👤 Profile</a>
-        </nav>
+<div>
 
-    </aside>
+<h1>Task Manager</h1>
 
-    <main class="main-content">
-
-        <h1>Tasks</h1>
-       
-<div class="progress-section">
-
-    <div class="progress-header">
-
-        <span>Today's Progress</span>
-
-        <span id="progressText">
-            0%
-        </span>
-
-    </div>
-
-    <div class="progress-bar">
-
-        <div
-            id="progressFill"
-            class="progress-fill">
-        </div>
-
-    </div>
+<p>
+Stay focused and complete your daily work.
+</p>
 
 </div>
 
+<div class="hero-right">
 
+<div class="progress-card">
 
-        <div class="task-box">
+<h2 id="progressPercent">
+0%
+</h2>
 
-            <input
-                type="text"
-                id="taskInput"
-                placeholder="Enter new task..."
-            >
-
-            <button id="addTaskBtn">
-                Add Task
-            </button>
-
-        </div>
-
-        <ul id="taskList"></ul>
-
-    </main>
+<p>
+Today's Progress
+</p>
 
 </div>
 
-<script src="js/config.js"></script>
+</div>
+
+</section>
+
+<!-- ================= TOOLBAR ================= -->
+
+<section class="toolbar">
+
+<div class="search-box">
+
+<i class="ti ti-search"></i>
+
+<input
+type="text"
+id="searchTask"
+placeholder="Search task...">
+
+</div>
+
+<div class="toolbar-buttons">
+
+<button
+class="filter-btn active"
+data-filter="all">
+
+All
+
+</button>
+
+<button
+class="filter-btn"
+data-filter="pending">
+
+Pending
+
+</button>
+
+<button
+class="filter-btn"
+data-filter="completed">
+
+Completed
+
+</button>
+
+<button
+id="newTaskBtn"
+class="add-btn">
+
+<i class="ti ti-plus"></i>
+
+Add Task
+
+</button>
+
+</div>
+
+</section>
+
+<!-- ================= ADD FORM ================= -->
+
+<section
+id="taskForm"
+class="task-form"
+style="display:none;">
+
+<div class="form-grid">
+
+<div class="input-group">
+
+<label>
+
+Task Name
+
+</label>
+
+<input
+id="taskTitle"
+type="text"
+placeholder="Enter task title">
+
+</div>
+
+<div class="input-group">
+
+<label>
+
+Priority
+
+</label>
+
+<select id="taskPriority">
+
+<option>
+
+Low
+
+</option>
+
+<option>
+
+Medium
+
+</option>
+
+<option>
+
+High
+
+</option>
+
+</select>
+
+</div>
+
+<div class="input-group full">
+
+<label>
+
+Description
+
+</label>
+
+<textarea
+id="taskDescription"
+placeholder="Task description"></textarea>
+
+</div>
+
+<div class="input-group">
+
+<label>
+
+Due Date
+
+</label>
+
+<input
+id="taskDate"
+type="date">
+
+</div>
+
+<div class="input-group">
+
+<label>
+
+Category
+
+</label>
+
+<select id="taskCategory">
+
+<option>
+
+Work
+
+</option>
+
+<option>
+
+Study
+
+</option>
+
+<option>
+
+Personal
+
+</option>
+
+<option>
+
+Fitness
+
+</option>
+
+</select>
+
+</div>
+
+</div>
+
+<div class="form-actions">
+
+<button
+id="cancelTask"
+class="secondary-btn">
+
+Cancel
+
+</button>
+
+<button
+id="saveTask"
+class="primary-btn">
+
+Save Task
+
+</button>
+
+</div>
+
+</section>
+
+<!-- ================= TASK LIST ================= -->
+
+<section
+class="task-list">
+
+<div
+id="emptyState"
+class="empty-state">
+
+<i class="ti ti-checklist"></i>
+
+<h2>
+
+No Tasks Yet
+
+</h2>
+
+<p>
+
+Create your first task to get started.
+
+</p>
+
+</div>
+
+<div
+id="taskList">
+
+<!-- JS renders task cards here -->
+
+</div>
+
+</section>
+
+</div>
+
+</main>
+
+<script src="js/navbar.js"></script>
 <script src="js/tasks.js"></script>
-<script src="js/loader.js"></script>
-<script src="js/toast.js"></script>
+
 </body>
 </html>

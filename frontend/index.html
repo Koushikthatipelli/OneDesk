@@ -1,11 +1,505 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-    <link rel="stylesheet" href="css/loader.css">
-<meta http-equiv="refresh" content="0; url=login.html">
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>OneDesk Dashboard</title>
+
+    <!-- Icons -->
+
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+
+    <!-- CSS -->
+
+    <link rel="stylesheet" href="css/theme.css">
+
+    <link rel="stylesheet" href="css/layout.css">
+
+    <link rel="stylesheet" href="css/navbar.css">
+
+    <link rel="stylesheet" href="css/components.css">
+
+    <link rel="stylesheet" href="css/dashboard.css">
+
 </head>
+
 <body>
-    <script src="js/loader.js"></script>
-    <script src="js/toast.js"></script>
+
+<header id="navbar"></header>
+
+<main class="page">
+
+<div class="container">
+
+<!-- ======================================= -->
+<!-- HERO -->
+<!-- ======================================= -->
+
+<section class="hero">
+
+    <div class="hero-left">
+
+        <h1 id="greeting">
+
+            👋 Hello
+
+        </h1>
+
+        <div class="hero-info">
+
+            <span id="todayDate"></span>
+
+            <span class="dot">•</span>
+
+            <span id="liveTime"></span>
+
+        </div>
+
+        <p>
+
+            Welcome back! Stay productive and complete your goals today.
+
+        </p>
+
+    </div>
+
+</section>
+
+<!-- ======================================= -->
+<!-- STATS -->
+<!-- ======================================= -->
+
+<section class="stats-grid">
+
+<div class="stat-card">
+
+<div class="stat-top">
+
+<div>
+
+<div class="stat-title">
+
+Tasks
+
+</div>
+
+<div
+
+class="stat-number"
+
+id="taskCount">
+
+0
+
+</div>
+
+</div>
+
+<div class="icon">
+
+<i class="ti ti-checklist"></i>
+
+</div>
+
+</div>
+
+<div class="stat-footer">
+
+Today's Tasks
+
+</div>
+
+</div>
+
+<div class="stat-card">
+
+<div class="stat-top">
+
+<div>
+
+<div class="stat-title">
+
+Notes
+
+</div>
+
+<div
+
+class="stat-number"
+
+id="notesCount">
+
+0
+
+</div>
+
+</div>
+
+<div class="icon">
+
+<i class="ti ti-notebook"></i>
+
+</div>
+
+</div>
+
+<div class="stat-footer">
+
+Saved Notes
+
+</div>
+
+</div>
+
+<div class="stat-card">
+
+<div class="stat-top">
+
+<div>
+
+<div class="stat-title">
+
+Calories
+
+</div>
+
+<div
+
+class="stat-number"
+
+id="calorieCount">
+
+0
+
+</div>
+
+</div>
+
+<div class="icon">
+
+<i class="ti ti-flame"></i>
+
+</div>
+
+</div>
+
+<div class="stat-footer">
+
+Today's Calories
+
+</div>
+
+</div>
+
+<div class="stat-card">
+
+<div class="stat-top">
+
+<div>
+
+<div class="stat-title">
+
+Water
+
+</div>
+
+<div
+
+class="stat-number"
+
+id="waterCount">
+
+0 L
+
+</div>
+
+</div>
+
+<div class="icon">
+
+<i class="ti ti-droplet"></i>
+
+</div>
+
+</div>
+
+<div class="stat-footer">
+
+Today's Water
+
+</div>
+
+</div>
+
+</section>
+<!-- ======================================= -->
+<!-- QUICK ACTIONS -->
+<!-- ======================================= -->
+
+<section class="quick-actions">
+
+    <h2>
+
+        Quick Actions
+
+    </h2>
+
+    <div class="action-grid">
+
+        <button
+        class="action-btn"
+        id="addTaskBtn">
+
+            <i class="ti ti-checklist"></i>
+
+            Add Task
+
+        </button>
+
+        <button
+        class="action-btn"
+        id="addNoteBtn">
+
+            <i class="ti ti-notebook"></i>
+
+            Add Note
+
+        </button>
+
+        <button
+        class="action-btn"
+        id="addFoodBtn">
+
+            <i class="ti ti-apple"></i>
+
+            Log Food
+
+        </button>
+
+        <button
+        class="action-btn"
+        id="addWaterBtn">
+
+            <i class="ti ti-droplet"></i>
+
+            Drink Water
+
+        </button>
+
+    </div>
+
+</section>
+
+<!-- ======================================= -->
+<!-- TODAY'S PROGRESS -->
+<!-- ======================================= -->
+
+<section class="progress-card">
+
+    <h2>
+
+        Today's Progress
+
+    </h2>
+
+    <div class="progress-item">
+
+        <div class="progress-label">
+
+            <span>Tasks</span>
+
+            <span id="taskProgress">0%</span>
+
+        </div>
+
+        <div class="progress">
+
+            <div
+            id="taskBar"
+            class="progress-fill"></div>
+
+        </div>
+
+    </div>
+
+    <div class="progress-item">
+
+        <div class="progress-label">
+
+            <span>Calories</span>
+
+            <span id="calorieProgress">0%</span>
+
+        </div>
+
+        <div class="progress">
+
+            <div
+            id="calorieBar"
+            class="progress-fill"></div>
+
+        </div>
+
+    </div>
+
+    <div class="progress-item">
+
+        <div class="progress-label">
+
+            <span>Water</span>
+
+            <span id="waterProgress">0%</span>
+
+        </div>
+
+        <div class="progress">
+
+            <div
+            id="waterBar"
+            class="progress-fill"></div>
+
+        </div>
+
+    </div>
+
+    <div class="progress-item">
+
+        <div class="progress-label">
+
+            <span>Protein</span>
+
+            <span id="proteinProgress">0%</span>
+
+        </div>
+
+        <div class="progress">
+
+            <div
+            id="proteinBar"
+            class="progress-fill"></div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ======================================= -->
+<!-- RECENT TASKS -->
+<!-- ======================================= -->
+
+<section class="recent-section">
+
+    <div class="section-header">
+
+        <h2>
+
+            Recent Tasks
+
+        </h2>
+
+        <a href="tasks.html">
+
+            View All
+
+        </a>
+
+    </div>
+
+    <div id="recentTasks">
+
+        <div class="empty-card">
+
+            <i class="ti ti-checklist"></i>
+
+            <p>
+
+                No tasks available.
+
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ======================================= -->
+<!-- DAILY SUMMARY -->
+<!-- ======================================= -->
+
+<section class="summary-grid">
+
+    <div class="summary-card">
+
+        <div class="summary-icon">
+
+            <i class="ti ti-target-arrow"></i>
+
+        </div>
+
+        <div>
+
+            <h3>
+
+                Today's Goal
+
+            </h3>
+
+            <p>
+
+                Complete your planned tasks.
+
+            </p>
+
+        </div>
+
+    </div>
+
+    <div class="summary-card">
+
+        <div class="summary-icon">
+
+            <i class="ti ti-heart"></i>
+
+        </div>
+
+        <div>
+
+            <h3>
+
+                Health Goal
+
+            </h3>
+
+            <p>
+
+                Reach your calorie and water goals.
+
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+</div>
+
+</main>
+
+<script src="js/config.js"></script>
+
+<script src="js/navbar.js"></script>
+
+<script src="js/dashboard.js"></script>
+
 </body>
+
 </html>

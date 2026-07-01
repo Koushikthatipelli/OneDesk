@@ -1,0 +1,867 @@
+console.log("Health JS Version 2");
+let waterChart;
+let calorieChart;
+const SEARCH_API =
+"http://localhost:5000/api/health/search";
+
+const suggestions =
+document.getElementById(
+"foodSuggestions"
+);
+// ===========================
+// Food Search Suggestions
+// ===========================
+
+document.getElementById("foodSearch")
+.addEventListener("input", async function () {
+
+    const query = this.value.trim();
+
+    if (query.length < 2) {
+
+        suggestions.style.display = "none";
+        suggestions.innerHTML = "";
+
+        return;
+
+    }
+
+    try {
+
+        const response = await fetch(
+
+            SEARCH_API +
+
+            "?query=" +
+
+            encodeURIComponent(query),
+
+            {
+
+                headers
+
+            }
+
+        );
+
+        const foods = await response.json();
+
+        suggestions.innerHTML = "";
+
+        if (foods.length === 0) {
+
+            suggestions.style.display = "none";
+
+            return;
+
+        }
+
+        foods.forEach(food => {
+
+            suggestions.innerHTML += `
+
+            <div class="food-item"
+
+            onclick="selectFood('${food.name}')">
+
+                <strong>${food.name}</strong>
+
+                <br>
+
+                <small>
+
+                ${food.calories} kcal |
+
+                ${food.protein} g Protein
+
+                </small>
+
+            </div>
+
+            `;
+
+        });
+
+        suggestions.style.display = "block";
+
+    }
+
+    catch (error) {
+
+        console.log(error);
+
+    }
+
+});
+function selectFood(name){
+
+    document.getElementById("foodSearch").value = name;
+
+    suggestions.innerHTML = "";
+
+    suggestions.style.display = "none";
+
+}
+
+
+const token =
+    localStorage.getItem("token");
+
+if (!token) {
+
+    window.location.href =
+        "login.html";
+
+}
+
+const waterLogs =
+    document.getElementById(
+        "waterLogs"
+    );
+
+
+const foodName =
+    document.getElementById("foodName");
+
+const quantity =
+    document.getElementById("quantity");
+
+const mealType =
+    document.getElementById("mealType");
+
+const addFoodBtn =
+    document.getElementById("addFoodBtn");
+
+const foodLogs =
+    document.getElementById("foodLogs");
+
+const caloriesTotal =
+    document.getElementById("caloriesTotal");
+
+const proteinTotal =
+    document.getElementById("proteinTotal");
+
+const carbsTotal =
+    document.getElementById("carbsTotal");
+
+const fatsTotal =
+    document.getElementById("fatsTotal");
+
+const waterTotal =
+    document.getElementById("waterTotal");
+    const foodSuggestions =
+    document.getElementById(
+        "foodSuggestions"
+    );
+
+const availableFoods = [
+
+    // Eggs & Dairy
+
+    "Egg",
+    "Boiled Egg",
+    "Omelette",
+    "Egg White",
+    "Milk",
+    "Curd",
+    "Paneer",
+    "Butter",
+    "Cheese",
+    "Greek Yogurt",
+
+    // Fruits
+
+    "Banana",
+    "Apple",
+    "Orange",
+    "Mango",
+    "Papaya",
+    "Watermelon",
+    "Pineapple",
+    "Guava",
+    "Grapes",
+    "Pomegranate",
+    "Kiwi",
+    "Muskmelon",
+    "Strawberry",
+    "Pear",
+    "Dates",
+
+    // Rice
+
+    "White Rice",
+    "Brown Rice",
+    "Curd Rice",
+    "Lemon Rice",
+    "Tomato Rice",
+    "Fried Rice",
+    "Jeera Rice",
+    "Veg Biryani",
+    "Chicken Biryani",
+    "Mutton Biryani",
+
+    // Roti & Bread
+
+    "Chapati",
+    "Roti",
+    "Paratha",
+    "Aloo Paratha",
+    "Naan",
+    "Kulcha",
+    "Bread",
+    "Brown Bread",
+
+    // South Indian
+
+    "Idli",
+    "Dosa",
+    "Masala Dosa",
+    "Rava Dosa",
+    "Onion Dosa",
+    "Uttapam",
+    "Pongal",
+    "Upma",
+    "Poha",
+    "Vada",
+    "Medu Vada",
+    "Sambar",
+    "Rasam",
+
+    // Chicken
+
+    "Chicken Breast",
+    "Chicken Curry",
+    "Chicken Fry",
+    "Chicken Biryani",
+    "Chicken Tikka",
+    "Grilled Chicken",
+    "Chicken Wings",
+
+    // Fish & Seafood
+
+    "Fish Curry",
+    "Fish Fry",
+    "Prawns",
+    "Shrimp Curry",
+    "Tuna",
+
+    // Mutton
+
+    "Mutton Curry",
+    "Mutton Fry",
+
+    // Vegetarian Protein
+
+    "Dal",
+    "Rajma",
+    "Chole",
+    "Green Gram",
+    "Black Gram",
+    "Soy Chunks",
+    "Tofu",
+
+    // Breakfast
+
+    "Oats",
+    "Corn Flakes",
+    "Muesli",
+    "Peanut Butter",
+
+    // Drinks
+
+    "Tea",
+    "Coffee",
+    "Green Tea",
+    "Black Coffee",
+    "Lassi",
+    "Buttermilk",
+    "Coconut Water",
+
+    // Nuts
+
+    "Almonds",
+    "Cashews",
+    "Walnuts",
+    "Peanuts",
+    "Pistachios",
+
+    // Fitness
+
+    "Protein Shake",
+    "Whey Protein",
+    "Mass Gainer"
+
+];
+
+
+
+// Load Dashboard
+
+async function loadHealth() {
+
+    try {
+         
+
+     const foodResponse =
+await fetch(
+    `${BASE_URL}/health/food`,
+    {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    }
+);
+            
+
+        const foods =
+            await foodResponse.json();
+
+        let calories = 0;
+        let protein = 0;
+        let carbs = 0;
+        let fats = 0;
+
+        foodLogs.innerHTML = "";
+
+        foods.forEach(food => {
+
+            calories += food.calories;
+            protein += food.protein;
+            carbs += food.carbs;
+            fats += food.fats;
+
+            const card =
+                document.createElement("div");
+
+            card.classList.add(
+                "food-log-card"
+            );
+
+            card.innerHTML = `
+                <h3>
+                    ${food.foodName}
+                </h3>
+
+                <p>
+                    Meal:
+                    ${food.mealType}
+                </p>
+
+                <p>
+                    Weight:
+${food.quantity} 
+                </p>
+
+                <p>
+                    Calories:
+                    ${food.calories}
+                </p>
+
+                <button
+                    class="delete-food-btn"
+                    onclick="deleteFood('${food._id}')"
+                >
+                    🗑 Delete
+                </button>
+            `;
+
+            foodLogs.appendChild(card);
+
+        });
+
+        caloriesTotal.textContent =
+            calories;
+
+        proteinTotal.textContent =
+            protein.toFixed(1) + "g";
+
+        carbsTotal.textContent =
+            carbs.toFixed(1) + "g";
+
+        fatsTotal.textContent =
+            fats.toFixed(1) + "g";
+
+        const waterResponse =
+          await fetch(
+    `${BASE_URL}/health/water`,
+                {
+                    headers:{
+                        Authorization:
+                        `Bearer ${token}`
+                    }
+                }
+            );
+
+        const water =
+            await waterResponse.json();
+
+        waterTotal.textContent =
+            water.totalWater + "ml";
+            
+const goal = 4000;
+
+const percentage =
+    Math.min(
+        (water.totalWater / goal) * 100,
+        100
+    );
+
+document.getElementById(
+    "waterFill"
+).style.height =
+    percentage + "%";
+
+document.getElementById(
+    "waterPercent"
+).textContent =
+    Math.round(percentage) + "%";
+
+document.getElementById(
+    "waterGoalText"
+).textContent =
+    `${water.totalWater} / ${goal} ml`;
+ 
+waterLogs.innerHTML = "";
+
+water.logs.forEach(log => {
+
+    const card =
+        document.createElement("div");
+
+    card.classList.add(
+        "water-log-card"
+    );
+
+    card.innerHTML = `
+
+        <span>
+            💧 ${log.amount}ml
+        </span>
+
+        <button
+            class="delete-water-btn"
+            onclick="deleteWater('${log._id}')"
+        >
+            🗑 Delete
+        </button>
+
+    `;
+
+    waterLogs.appendChild(card);
+
+});
+
+
+
+
+    }
+
+    catch(error){
+        hideLoader();
+
+        console.error(error);
+
+    }
+
+}
+
+// Add Food
+
+addFoodBtn.addEventListener(
+    "click",
+    async () => {
+
+        try {
+
+            if(
+                !foodName.value ||
+                !quantity.value
+            ){
+                return;
+            }
+            showLoader("Adding Food...");
+            await fetch(
+         `${BASE_URL}/health/food`,
+                {
+                    method:"POST",
+
+                    headers:{
+                        "Content-Type":
+                        "application/json",
+
+                        Authorization:
+                        `Bearer ${token}`
+                    },
+
+                    body:JSON.stringify({
+
+                        foodName:
+                            foodName.value,
+
+                        quantity:
+                            Number(
+                                quantity.value
+                            ),
+
+                        mealType:
+                            mealType.value
+
+                    })
+                }
+            );
+
+            foodName.value = "";
+            quantity.value = "";
+            hideLoader();
+showSuccess("Food Added Successfully 🍽️");
+
+            loadHealth();
+
+        }
+
+        catch(error){
+            hideLoader();
+
+    showError("Something went wrong");
+
+            console.error(error);
+
+        }
+
+    }
+);
+
+// Delete Food
+
+async function deleteFood(id) {
+
+    try {
+        showLoader("Deleting Food...");
+
+        await fetch(
+            `${BASE_URL}/health/food/${id}`,
+            {
+                method: "DELETE",
+
+                headers: {
+                    Authorization:
+                    `Bearer ${token}`
+                }
+            }
+        );
+        showSuccess("Food Deleted Successfully");
+
+        hideLoader();
+        loadAnalytics();
+
+        loadHealth();
+
+    }
+
+    catch (error) {
+        hideLoader();
+         showError("Something went wrong");
+        console.error(error);
+
+    }
+
+}
+
+// Water Buttons
+
+document
+.querySelectorAll(".water-btn")
+.forEach(button => {
+
+    button.addEventListener(
+        "click",
+        async () => {
+
+            const amount =
+                Number(
+                    button.dataset.water
+                );
+                showLoader("Updating Water...");
+
+            await fetch(
+    `${BASE_URL}/health/water`,
+                {
+                    method:"POST",
+
+                    headers:{
+                        "Content-Type":
+                        "application/json",
+
+                        Authorization:
+                        `Bearer ${token}`
+                    },
+
+                    body:JSON.stringify({
+                        amount
+                    })
+                }
+            );
+            loadAnalytics();
+            showSuccess("Water Intake Updated 💧");
+            loadHealth();
+            hideLoader();
+
+        }
+    );
+
+});
+
+foodName.addEventListener(
+    "input",
+    () => {
+
+        const search =
+            foodName.value
+            .toLowerCase();
+
+        foodSuggestions.innerHTML = "";
+
+        if(search.length === 0){
+
+            return;
+
+        }
+
+        const filteredFoods =
+            availableFoods.filter(
+                food =>
+                    food
+                    .toLowerCase()
+                    .includes(search)
+            );
+
+        filteredFoods.forEach(food => {
+
+            const item =
+                document.createElement("div");
+
+            item.classList.add(
+                "suggestion-item"
+            );
+
+            item.textContent =
+                food;
+
+            item.addEventListener(
+                "click",
+                () => {
+
+                    foodName.value =
+                        food;
+
+                    foodSuggestions
+                        .innerHTML = "";
+
+                }
+            );
+
+            foodSuggestions
+                .appendChild(item);
+
+        });
+
+    }
+);
+
+
+
+async function deleteWater(id) {
+
+    try {
+        showLoader("Deleting Water...");
+
+        await fetch(
+
+           `${BASE_URL}/health/water/${id}`,
+
+            {
+
+                method: "DELETE",
+
+                headers: {
+
+                    Authorization:
+                    `Bearer ${token}`
+
+                }
+
+            }
+
+        );
+        showSuccess("Water Entry Deleted");
+        loadHealth();
+        hideLoader();
+
+    }
+
+    catch (error) {
+         showError("Something went wrong");
+
+        console.error(error);
+        hideLoader();
+
+    }
+
+}
+
+async function loadAnalytics() {
+
+    try {
+const response =
+await fetch(
+    `${BASE_URL}/health/analytics`,
+                {
+                    headers:{
+                        Authorization:
+                        `Bearer ${token}`
+                    }
+                }
+            );
+
+        const data =
+            await response.json();
+
+        const labels =
+            data.map(
+                item => item.day
+            );
+
+        const waterData =
+            data.map(
+                item => item.water
+            );
+
+        const calorieData =
+            data.map(
+                item => item.calories
+            );
+
+        if(waterChart){
+
+            waterChart.destroy();
+
+        }
+
+        if(calorieChart){
+
+            calorieChart.destroy();
+
+        }
+waterChart = new Chart(
+
+    document.getElementById(
+        "waterChart"
+    ),
+
+    {
+
+        type: "line",
+
+        data: {
+
+            labels,
+
+            datasets: [{
+
+                label:
+                    "💧 Water Intake",
+
+                data:
+                    waterData,
+
+                borderColor:
+                    "#3b82f6",
+
+                backgroundColor:
+                    "rgba(59,130,246,0.2)",
+
+                fill: true,
+
+                tension: 0.4,
+
+                borderWidth: 4,
+
+                pointRadius: 6,
+
+                pointHoverRadius: 8
+
+            }]
+
+        },
+
+        options: {
+
+            responsive: true,
+
+            plugins: {
+
+                legend: {
+
+                    labels: {
+
+                        font: {
+                            size: 14,
+                            weight: "bold"
+                        }
+
+                    }
+
+                }
+
+            }
+
+        }
+
+    }
+
+);
+        calorieChart =
+            new Chart(
+
+                document.getElementById(
+                    "calorieChart"
+                ),
+
+                {
+
+                    type:"bar",
+
+                    data:{
+
+                        labels,
+
+                        datasets:[{
+
+                            label:
+                                "Calories",
+
+                            data:
+                                calorieData
+
+                        }]
+
+                    }
+
+                }
+
+            );
+
+    }
+
+    catch(error){
+       hideLoader();
+        console.error(error);
+
+    }
+
+}
+
+
+loadAnalytics();
+loadHealth();
+
